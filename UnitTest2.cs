@@ -42,11 +42,8 @@ namespace TestProject2
 
 
             IWebElement searchInput = webdriver.FindElement(By.XPath("//input[@id='s']"));
-            Thread.Sleep(3000);
 
             searchInput.SendKeys("HTML" + Keys.Enter);
-
-            Thread.Sleep(3000); 
 
             string expectedTitle = "HTML";
             IWebElement element = webdriver.FindElement(By.XPath("//em[contains(text(), 'HTML')]"));
@@ -74,9 +71,12 @@ namespace TestProject2
             {
                 IWebElement productLink = webdriver.FindElement(By.XPath(producstLinks(productName)));
                 string actualText = productLink.Text;
+                string hrefAttribute = productLink.GetAttribute("href");
 
                 Assert.That(actualText, Contains.Substring(productName), $"Text does not contain the expected value for {productName}.");
+                Assert.That(hrefAttribute, Contains.Substring("https"), $"The href attribute does not contain 'https' for {productName}.");
             }
+
         }
 
 
