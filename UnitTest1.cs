@@ -30,7 +30,9 @@ namespace TestProject4
 
         [FindsBy(How = How.XPath, Using = "//label[normalize-space()='Remember me']")]
         public IWebElement RememberMe { get; set; }
-       
+
+        [FindsBy(How = How.XPath, Using = "//input[@name='register']")]
+        public IWebElement RegisterButton { get; set; }
 
     }
     public class LoginPageTests
@@ -67,18 +69,24 @@ namespace TestProject4
         public void IsRememberMeDisplayed()
         {
             string expectedResult = "Remember me";
-            Assert.That(loginPage.RememberMe.Displayed, Is.EqualTo(true), $"Remember me text is not displayed");
+            Assert.That(loginPage.RememberMe.Text, Is.EqualTo(expectedResult), $"Remember me text is not displayed");
 
         }
 
         [Test]
         public void IsLostPasswordDisplayed()
         {
-            string expectedResult = "Remember me";
-            Assert.That(loginPage.LostYourPassword.Displayed, Is.EqualTo(true), $"Lost your password? text is not displayed");
+            string expectedResult = "Lost your password?";
+            Assert.That(loginPage.LostYourPassword.Text, Is.EqualTo(expectedResult), $"Lost your password? text is not displayed");
 
         }
 
+        [Test]
+        public void IsRegisterDisplayed()
+        {
+            string expectedResult = "Register";
+            Assert.That(loginPage.RegisterButton.GetAttribute("value"), Is.EqualTo(expectedResult), $"Register text is not displayed");
+        }
 
 
 
