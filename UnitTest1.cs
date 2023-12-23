@@ -32,27 +32,6 @@ namespace TestProject4
         public IWebElement RememberMe { get; set; }
        
 
-
-        // private IWebElement SuccessMessage => webDriver.FindElement(By.XPath("//p[contains(text(),'Hello')]"));
-
-
-        //private IWebElement RegisterButton => webDriver.FindElement(By.XPath("//input[@name='register']"));
-        //private IWebElement LoginUsername => webDriver.FindElement(By.XPath("//input[@id='username']"));
-        //private IWebElement LoginPassword => webDriver.FindElement(By.XPath("//input[@id='password']"));
-        //private IWebElement LoginButton => webDriver.FindElement(By.XPath("//input[@name='login']"));
-
-
-
-        //private IWebElement SuccessMessage => webDriver.FindElement(By.XPath("//p[contains(text(),'Hello')]"));
-        //private IWebElement NoRegPassword => webDriver.FindElement(By.XPath("//div[@id='body'][.//li[contains(., 'Error') and contains(., 'Please enter an account password.')]]"));
-        //private IWebElement NoRegEmail => webDriver.FindElement(By.XPath("//div[@id='body'][.//li[contains(., 'Error') and contains(., 'Please provide a valid email address.')]]"));
-
-        //private IWebElement LostYourPassword => webDriver.FindElement(By.XPath("//a[normalize-space()='Lost your password?']"));
-        //private IWebElement RememberMe => webDriver.FindElement(By.XPath("//label[normalize-space()='Remember me']"));
-
-
-
-
     }
     public class LoginPageTests
     {
