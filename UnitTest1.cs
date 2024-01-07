@@ -3,7 +3,6 @@ namespace TestProject4
     using NUnit.Framework;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.Support.UI;
     using SeleniumExtras.PageObjects;
 
     public class LoginPage
@@ -15,20 +14,20 @@ namespace TestProject4
         [FindsBy(How = How.XPath, Using = "//input[@id='username']")]
         public IWebElement UserName { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@id='password']")] 
+        [FindsBy(How = How.XPath, Using = "//input[@id='password']")]
         public IWebElement Password { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//input[@name='login']")] 
+        [FindsBy(How = How.XPath, Using = "//input[@name='login']")]
         public IWebElement LoginButton { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//p[contains(text(),'Hello')]")]
         public IWebElement SuccessfullMessage { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//a[normalize-space()='Lost your password?']")]
+        [FindsBy(How = How.CssSelector, Using = "a[href='https://practice.automationtesting.in/my-account/lost-password/']")]
 
         public IWebElement LostYourPassword { get; set; }
 
-        [FindsBy(How = How.XPath, Using = "//label[normalize-space()='Remember me']")]
+        [FindsBy(How = How.CssSelector, Using = "label[for='rememberme']")]
         public IWebElement RememberMe { get; set; }
 
         [FindsBy(How = How.XPath, Using = "//input[@name='register']")]
@@ -53,11 +52,9 @@ namespace TestProject4
             loginPage.ConsentButton.Click();
         }
 
-        [Test]
-        public void IsLoginSuccess()
+        [TestCase("karage16255@bayxs.com", "222uSNj%g")]
+        public void IsLoginSuccess(string userName, string password)
         {
-            string userName = "karage16255@bayxs.com";
-            string password = "222uSNj%g";
             loginPage.UserName.SendKeys(userName);
             loginPage.Password.SendKeys(password);
             loginPage.LoginButton.Click();
@@ -65,26 +62,23 @@ namespace TestProject4
             Assert.That(loginPage.SuccessfullMessage.Displayed, Is.EqualTo(true), $"User did not logged in");
         }
 
-        [Test]
-        public void IsRememberMeDisplayed()
+        [TestCase("Remember me")]
+        public void IsRememberMeDisplayed(string expectedResult)
         {
-            string expectedResult = "Remember me";
             Assert.That(loginPage.RememberMe.Text, Is.EqualTo(expectedResult), $"Remember me text is not displayed");
 
         }
 
-        [Test]
-        public void IsLostPasswordDisplayed()
+        [TestCase("Lost your password?")]
+        public void IsLostPasswordDisplayed(string expectedResult)
         {
-            string expectedResult = "Lost your password?";
             Assert.That(loginPage.LostYourPassword.Text, Is.EqualTo(expectedResult), $"Lost your password? text is not displayed");
 
         }
 
-        [Test]
-        public void IsRegisterDisplayed()
+        [TestCase("Register")]
+        public void IsRegisterDisplayed(string expectedResult)
         {
-            string expectedResult = "Register";
             Assert.That(loginPage.RegisterButton.GetAttribute("value"), Is.EqualTo(expectedResult), $"Register text is not displayed");
         }
 
