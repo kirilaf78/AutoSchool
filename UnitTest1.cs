@@ -5,7 +5,6 @@ namespace TestProject3
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Support.UI;
-    using System.Security.Cryptography.X509Certificates;
 
     public class LoginPage
     {
@@ -14,6 +13,11 @@ namespace TestProject3
         public LoginPage(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
+        }
+
+        private WebDriverWait CreateWebdriverWait(TimeSpan time)
+        {
+            return new WebDriverWait(webDriver, time);
         }
 
         private IWebElement RegEmailInput => webDriver.FindElement(By.XPath("//input[@id='reg_email']"));
@@ -28,8 +32,8 @@ namespace TestProject3
         private IWebElement NoRegPassword => webDriver.FindElement(By.XPath("//div[@id='body'][.//li[contains(., 'Error') and contains(., 'Please enter an account password.')]]"));
         private IWebElement NoRegEmail => webDriver.FindElement(By.XPath("//div[@id='body'][.//li[contains(., 'Error') and contains(., 'Please provide a valid email address.')]]"));
 
-        private IWebElement LostYourPassword => webDriver.FindElement(By.XPath("//a[normalize-space()='Lost your password?']"));
-        private IWebElement RememberMe => webDriver.FindElement(By.XPath("//label[normalize-space()='Remember me']"));
+        private IWebElement LostYourPassword => webDriver.FindElement(By.CssSelector("a[href='https://practice.automationtesting.in/my-account/lost-password/']"));
+        private IWebElement RememberMe => webDriver.FindElement(By.CssSelector("label[for='rememberme']"));
 
 
         public LoginPage EnterRegEmail(string email)
@@ -69,20 +73,20 @@ namespace TestProject3
 
         public bool IsAccountExistMessage()
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(5));
+            WebDriverWait wait = CreateWebdriverWait(TimeSpan.FromSeconds(5));
             IWebElement element = wait.Until(e => AccountExistsMessage);
             return AccountExistsMessage.Displayed;
         }
 
         public bool IsLoginSuccessfull()
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(3));
+            WebDriverWait wait = CreateWebdriverWait(TimeSpan.FromSeconds(3));
             IWebElement element = wait.Until(e => SuccessMessage);
             return SuccessMessage.Displayed;
         }
         public bool IsPasswordNeededToReg()
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(3));
+            WebDriverWait wait = CreateWebdriverWait(TimeSpan.FromSeconds(3));
             IWebElement element = wait.Until(e => NoRegPassword);
             return NoRegPassword.Displayed;
 
@@ -90,7 +94,7 @@ namespace TestProject3
 
         public bool NoRegEmailWarning()
         {
-            WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(3));
+            WebDriverWait wait = CreateWebdriverWait(TimeSpan.FromSeconds(3));
             IWebElement element = wait.Until(e => NoRegEmail);
             return NoRegEmail.Displayed;
 
@@ -119,6 +123,8 @@ namespace TestProject3
         LoginPage loginPage;
         string URL = "https://practice.automationtesting.in/my-account/";
 
+
+
         [SetUp]
         public void SetUp()
         {
@@ -139,31 +145,31 @@ namespace TestProject3
         }
         // account is already registered message
 
-        [Test]
-        public void IsAccountRegistered()
+        [TestCase("karage16255@bayxs.com", "222uSNj%g")]
+        public void IsAccountRegistered(string email, string password)
         {
-            loginPage.EnterRegEmail("karage16255@bayxs.com")
-                     .EnterRegPassword("222uSNj%g")
+            loginPage.EnterRegEmail(email)
+                     .EnterRegPassword(password)
                      .ClickRegisterButton();
             Assert.That(loginPage.IsAccountExistMessage(), Is.EqualTo(true), "The account exists message is not displayed");
         }
 
-        [Test]
+        [TestCase("karage16255@bayxs.com", "222uSNj%g")]
 
-        public void IsLoginSuccess()
+        public void IsLoginSuccess(string email, string password)
         {
-            loginPage.EnterUserName("karage16255@bayxs.com")
-                     .EnterPassword("222uSNj%g")
+            loginPage.EnterUserName(email)
+                     .EnterPassword(password)
                      .ClickLoginButton();
             Assert.That(loginPage.IsLoginSuccessfull(), Is.EqualTo(true), "The success message is not displayed");
 
         }
         // error message displayed when user did not enter password on registration
 
-        [Test]
-        public void IsNoRegPasswordWarning()
+        [TestCase("sarage16255@bayxs.com")]
+        public void IsNoRegPasswordWarning(string email)
         {
-            loginPage.EnterRegEmail("sarage16255@bayxs.com")
+            loginPage.EnterRegEmail(email)
                      .ClickRegisterButton();
 
             Assert.That(loginPage.IsPasswordNeededToReg, Is.EqualTo(true), "The success message is not displayed");
@@ -172,43 +178,65 @@ namespace TestProject3
         // error message displayed when user did not enter email on registration
 
 
-        [Test]
+        [TestCase("222uSNj%g")]
 
-        public void IsNoRegEmailWarnign()
+        public void IsNoRegEmailWarning(string password)
         {
-            loginPage.EnterRegPassword("222uSNj%g")
+            loginPage.EnterRegPassword(password)
                      .ClickRegisterButton();
 
             Assert.That(loginPage.NoRegEmailWarning, Is.EqualTo(true), "The success message is not displayed");
 
         }
 
-        [Test]
+        //[Test]
 
-        public void IsLostPasswordText()
+        //public void IsLostPasswordText()
+        //{
+        //    string expectedResult = "Lost your password?";
+        //    Assert.That(loginPage.GetLostYourPasswordText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
+        //}
+
+
+        //[Test]
+
+        //public void IsRememberMeText() 
+        //{
+        //    string expectedResult = "Remember me";
+        //    Assert.That(loginPage.GetRememberMeText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
+        //}
+
+        //[Test]
+
+        //public void IsRegisterText() 
+        //{
+        //    string expectedResult = "Register";
+        //    Assert.That(loginPage.GetRegisterText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
+        //}
+
+        [TestCase("Lost your password?", TestName = "LostPasswordText")]
+        [TestCase("Remember me", TestName = "RememberMeText")]
+        [TestCase("Register", TestName = "RegisterText")]
+        public void CheckText(string expectedText)
         {
-            string expectedResult = "Lost your password?";
-            Assert.That(loginPage.GetLostYourPasswordText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
+            string actualText = "";
+
+            switch (TestContext.CurrentContext.Test.Name)
+            {
+                case "LostPasswordText":
+                    actualText = loginPage.GetLostYourPasswordText();
+                    break;
+                case "RememberMeText":
+                    actualText = loginPage.GetRememberMeText();
+                    break;
+                case "RegisterText":
+                    actualText = loginPage.GetRegisterText();
+                    break;
+            }
+
+            Assert.That(actualText, Is.EqualTo(expectedText), $"The text doesn't equal to {expectedText}");
         }
 
-
-        [Test]
-
-        public void IsRememberMeText() 
-        {
-            string expectedResult = "Remember me";
-            Assert.That(loginPage.GetRememberMeText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
-        }
-
-        [Test]
-
-        public void IsRegisterText() 
-        {
-            string expectedResult = "Register";
-            Assert.That(loginPage.GetRegisterText(), Is.EqualTo(expectedResult), "The text doesn't equal to expectedResult");
-        }
-
-        
 
         [TearDown]
         public void TearDown()
@@ -216,4 +244,4 @@ namespace TestProject3
             webDriver.Close();
         }
     }
-}  
+}
