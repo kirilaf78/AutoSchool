@@ -17,7 +17,7 @@ namespace SpecFlowProject1.Pages
             this.webDriver = webDriver; 
         }
         public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
-        // TexBox
+        // TexBox section
 
         public IWebElement TexBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Text Box']"));
 
@@ -31,35 +31,38 @@ namespace SpecFlowProject1.Pages
 
         public IWebElement GetResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
 
-        //CheckBox
+        //CheckBox section
         // to replace with parametrize 
         public IWebElement CheckBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Check Box']"));
-        public IWebElement HomeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[1]"));
-        public IWebElement DesktopCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-desktop']//span[@class='rct-checkbox']"));
-        public IWebElement DocumentsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[3]"));
-        public IWebElement WorkSpaceToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[4]"));
-        public IWebElement AngularCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-angular']//span[@class='rct-checkbox']"));
-        public IWebElement VeuCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-veu']//span[@class='rct-checkbox']"));
 
-        public IWebElement OfficeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[5]"));
+        // toggle elements to expand the folders
+        public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
+        //public IWebElement HomeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[1]"));
+        //public IWebElement DocumentsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[3]"));
+        //public IWebElement WorkSpaceToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[4]"));
+        //public IWebElement OfficeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[5]"));
+        //public IWebElement DownloadsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[6]"));
 
 
-        public IWebElement PublicCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-public']//span[@class='rct-checkbox']"));
+        public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='{checkboxTitle}']//span[@class='rct-checkbox']"));
+        //public IWebElement DesktopCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-desktop']//span[@class='rct-checkbox']"));
+        //public IWebElement AngularCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-angular']//span[@class='rct-checkbox']"));
+        //public IWebElement VeuCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-veu']//span[@class='rct-checkbox']"));
 
-        public IWebElement PrivateCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-private']//span[@class='rct-checkbox']"));
+        //public IWebElement PublicCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-public']//span[@class='rct-checkbox']"));
 
-        public IWebElement ClassifiedCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-classified']//span[@class='rct-checkbox']"));
+        //public IWebElement PrivateCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-private']//span[@class='rct-checkbox']"));
 
-        public IWebElement GeneralCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-general']//span[@class='rct-checkbox']"));
+        //public IWebElement ClassifiedCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-classified']//span[@class='rct-checkbox']"));
 
-        public IWebElement DownloadsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[6]"));
+        //public IWebElement GeneralCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-general']//span[@class='rct-checkbox']"));
 
         public IWebElement DownloadsFolderTitle => webDriver.FindElement(By.XPath("//span[contains(text(),'Downloads')]"));
 
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
 
         
-        // TexBox
+        // TexBox methods
         public void ClickElementsLink()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
@@ -134,6 +137,12 @@ namespace SpecFlowProject1.Pages
             return GetResutlFieldByName(permanentAddress).Text;
         }
 
+        // CheckBox methods
+
+        public void ClickCheckbox()
+        {
+            CheckBox.Click();
+        }
 
         
 
