@@ -19,7 +19,7 @@ namespace SpecFlowProject1.Pages
         public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
         // TexBox section
 
-        public IWebElement TexBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Text Box']"));
+        public IWebElement TextBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Text Box']"));
 
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
@@ -44,7 +44,7 @@ namespace SpecFlowProject1.Pages
         //public IWebElement DownloadsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[6]"));
 
 
-        public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='{checkboxTitle}']//span[@class='rct-checkbox']"));
+        public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='tree-node-{checkboxTitle}']//span[@class='rct-checkbox']"));
         //public IWebElement DesktopCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-desktop']//span[@class='rct-checkbox']"));
         //public IWebElement AngularCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-angular']//span[@class='rct-checkbox']"));
         //public IWebElement VeuCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-veu']//span[@class='rct-checkbox']"));
@@ -62,13 +62,21 @@ namespace SpecFlowProject1.Pages
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
 
         
-        // TexBox methods
+        
         public void ClickElementsLink()
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             js.ExecuteScript("arguments[0].click();", ElementsOnMain);
         }
-        
+
+        // to click categories  such as Text Box, Check Box.... on Elements page
+        public void ClickCategory(IWebElement element)
+        {
+            element.Click();
+        }
+
+        // TexBox methods
+
         public ElementsPage EnterName(string name)
         {
             string fieldName = "userName";
@@ -108,10 +116,6 @@ namespace SpecFlowProject1.Pages
             return this;
         }
 
-        public void ClickTextBox()
-        {
-            TexBox.Click();
-        }
 
         public string GetResultNameText()
         {
@@ -137,12 +141,10 @@ namespace SpecFlowProject1.Pages
             return GetResutlFieldByName(permanentAddress).Text;
         }
 
+
+
         // CheckBox methods
 
-        public void ClickCheckbox()
-        {
-            CheckBox.Click();
-        }
 
         
 

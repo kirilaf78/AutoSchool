@@ -1,3 +1,5 @@
+using OpenQA.Selenium;
+using SpecFlowProject1.Pages;
 using System;
 using TechTalk.SpecFlow;
 
@@ -6,34 +8,63 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsCheckBoxStepDefinitions
     {
-        [Given(@"User expands the folder ""([^""]*)""")]
-        public void GivenUserExpandsTheFolder(string home)
+        IWebDriver webDriver;
+        ElementsPage elementsPage;
+        string URL = "https://demoqa.com/";
+
+        [When(@"User clicks Check Box title")]
+        public void WhenUserClicksCheckBoxTitle()
         {
-            throw new PendingStepException();
+            elementsPage.ClickCategory(elementsPage.CheckBox);
+        }
+        [When(@"User expands the folder Home")]
+        public void WhenUserExpandsTheFolderHome()
+        {
+            elementsPage.GetToggleElement(1).Click();
         }
 
-        [Given(@"User selects the folder ""([^""]*)"" without expanding it")]
-        public void GivenUserSelectsTheFolderWithoutExpandingIt(string desktop)
+
+        [When(@"User selects the folder Desktop without expanding it")]
+        public void WhenUserSelectsTheFolderDesktopWithoutExpandingIt()
         {
-            throw new PendingStepException();
+            elementsPage.GetCheckboxElement("desktop").Click();
         }
 
-        [Given(@"User chooses ""([^""]*)"" and ""([^""]*)"" from the ""([^""]*)"" folder")]
-        public void GivenUserChoosesAndFromTheFolder(string angular, string veu, string workSpace)
-        {
-            throw new PendingStepException();
+        [When(@"User expands Documents folder")]
+        public void WhenUserExpandsDocumentsFolder()
+        {   
+            elementsPage.GetToggleElement(3).Click();
+                
         }
 
-        [When(@"User expands the folder ""([^""]*)""")]
-        public void WhenUserExpandsTheFolder(string office)
+        [When(@"User expands WorkSpace folder")]
+        public void WhenUserExpandsWorkSpaceFolder()
         {
-            throw new PendingStepException();
+            elementsPage.GetToggleElement(4).Click();
         }
 
-        [Then(@"User clicks on each element in the ""([^""]*)"" folder one by one")]
-        public void ThenUserClicksOnEachElementInTheFolderOneByOne(string office)
+        [Then(@"User selects Angular and Veu")]
+        public void ThenUserSelectsAngularAndVeu()
         {
-            throw new PendingStepException();
+            elementsPage.GetCheckboxElement("angular").Click();
+            elementsPage.GetCheckboxElement("veu").Click();
+
+        }
+
+        [When(@"User expands the folder Office")]
+        public void WhenUserExpandsTheFolderOffice()
+        {
+            elementsPage.GetToggleElement(5).Click();
+        }
+
+        [Then(@"User clicks on each element in the Office folder one by one")]
+        public void ThenUserClicksOnEachElementInTheOfficeFolderOneByOne()
+        {
+            foreach (var element in new[] { "public", "private", "classified", "general" })
+            {
+                elementsPage.GetCheckboxElement(element).Click();
+            }
+
         }
 
         [When(@"User click toggle of the folder ""([^""]*)""")]
@@ -42,8 +73,8 @@ namespace SpecFlowProject1.StepDefinitions
             throw new PendingStepException();
         }
 
-        [Then(@"User selects the entire ""([^""]*)"" folder \(by clicking on its name\)")]
-        public void ThenUserSelectsTheEntireFolderByClickingOnItsName(string downloads)
+        [Then(@"User clicks title of  ""([^""]*)"" folder \(by clicking on its name\)")]
+        public void ThenUserClicksTitleOfFolderByClickingOnItsName(string downloads)
         {
             throw new PendingStepException();
         }

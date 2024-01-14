@@ -27,13 +27,16 @@ Scenario: Verifying Text Box feature
 
 @CheckBox
   Scenario: Verify folder selection and output
-    Given User expands the folder "Home"
-    And User selects the folder "Desktop" without expanding it
-    And User chooses "Angular" and "Veu" from the "WorkSpace" folder
-    When User expands the folder "Office"
-    Then User clicks on each element in the "Office" folder one by one
+    When User clicks Check Box title
+	And User expands the folder Home
+    And User selects the folder Desktop without expanding it
+	And User expands Documents folder
+	And User expands WorkSpace folder
+	Then User selects Angular and Veu 
+    When User expands the folder Office
+    Then User clicks on each element in the Office folder one by one
     When User click toggle of the folder "Downloads"
-    Then User selects the entire "Downloads" folder (by clicking on its name)
+    Then User clicks title of  "Downloads" folder (by clicking on its name)
     And the output should be "You have selected : desktop notes commands angular veu office public private classified general downloads wordFile excelFile"
 
 

@@ -43,7 +43,7 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            elementsPage.ClickTextBox();
+            elementsPage.ClickCategory(elementsPage.TextBox);
         }
 
         [Then(@"User enters the following data in Text Box fields")]
