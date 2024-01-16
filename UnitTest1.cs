@@ -19,12 +19,13 @@ namespace TestProject3
         {
             return new WebDriverWait(webDriver, time);
         }
-
-        private IWebElement RegEmailInput => webDriver.FindElement(By.XPath("//input[@id='reg_email']"));
-        private IWebElement RegPasswordInput => webDriver.FindElement(By.XPath("//input[@id='reg_password']"));
+        string regEmailInput = "reg_email";
+        string regPasswordInput = "reg_password";
+        string userNameInput = "username";
+        string passwordInput = "password";
+        private IWebElement GetInput(string name) => webDriver.FindElement(By.XPath($"//input[@id='{name}']"));
+        
         private IWebElement RegisterButton => webDriver.FindElement(By.XPath("//input[@name='register']"));
-        private IWebElement LoginUsername => webDriver.FindElement(By.XPath("//input[@id='username']"));
-        private IWebElement LoginPassword => webDriver.FindElement(By.XPath("//input[@id='password']"));
         private IWebElement LoginButton => webDriver.FindElement(By.XPath("//input[@name='login']"));
 
         private IWebElement AccountExistsMessage => webDriver.FindElement(By.XPath("//li[contains(text(),'An account is already registered with your email a')]"));
@@ -38,13 +39,13 @@ namespace TestProject3
 
         public LoginPage EnterRegEmail(string email)
         {
-            RegEmailInput.SendKeys(email);
+            GetInput(regEmailInput).SendKeys(email);
             return this;
         }
 
         public LoginPage EnterRegPassword(string password)
         {
-            RegPasswordInput.SendKeys(password);
+            GetInput(regPasswordInput).SendKeys(password);
             return this;
         }
 
@@ -55,13 +56,13 @@ namespace TestProject3
         }
         public LoginPage EnterUserName(string email)
         {
-            LoginUsername.SendKeys(email);
+            GetInput(userNameInput).SendKeys(email);
             return this;
         }
 
         public LoginPage EnterPassword(string password)
         {
-            LoginPassword.SendKeys(password);
+            GetInput(passwordInput).SendKeys(password);
             return this;
         }
 
