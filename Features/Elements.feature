@@ -2,12 +2,10 @@
 
 
 Background: User navigates to Elements page
-Given User opens browser 
 When User enters URL
-And User clicks Elements icon
-Then Elements page is displayed 
+Then User clicks Elements icon
 
-@TextBox
+
 Scenario: Verifying Text Box feature
 	When User clicks Text Box title
 	Then User enters the following data in Text Box fields 
@@ -25,7 +23,6 @@ Scenario: Verifying Text Box feature
 	| Permananet Address :The same as above          |
 
 
-@CheckBox
   Scenario: Verify folder selection and output
     When User clicks Check Box title
 	And User expands the folder Home
@@ -35,8 +32,8 @@ Scenario: Verifying Text Box feature
 	Then User selects Angular and Veu 
     When User expands the folder Office
     Then User clicks on each element in the Office folder one by one
-    When User click toggle of the folder "Downloads"
-    Then User clicks title of  "Downloads" folder (by clicking on its name)
+    When User click toggle of the folder Downloads
+    Then User clicks title of  Downloads folder (by clicking on its name)
     And the output should be "You have selected : desktop notes commands angular veu office public private classified general downloads wordFile excelFile"
 
 

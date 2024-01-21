@@ -1,5 +1,8 @@
+using NUnit.Framework;
 using OpenQA.Selenium;
 using SpecFlowProject1.Pages;
+using OpenQA.Selenium.Chrome;
+
 using System;
 using TechTalk.SpecFlow;
 
@@ -8,53 +11,67 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsCheckBoxStepDefinitions
     {
-        IWebDriver webDriver;
-        ElementsPage elementsPage;
-        string URL = "https://demoqa.com/";
+        private IWebDriver _webDriver;
+        private ElementsPage _elementsPage;
+
 
         [When(@"User clicks Check Box title")]
         public void WhenUserClicksCheckBoxTitle()
+
         {
-            elementsPage.ClickCategory(elementsPage.CheckBox);
+            _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
+            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
+
+            // webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+
+            //elementsPage.ClickCategory(elementsPage.InitializeWaitAndCheckbox());
+
+            //IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
+            //js.ExecuteScript("arguments[0].click();", elementsPage.CheckBox);
+            //Console.WriteLine(webDriver.PageSource);
+
+            _elementsPage.ClickCategory(_elementsPage.CheckBox);
         }
+
         [When(@"User expands the folder Home")]
         public void WhenUserExpandsTheFolderHome()
         {
-            elementsPage.GetToggleElement(1).Click();
+            _elementsPage.GetToggleElement(1).Click();
         }
 
 
         [When(@"User selects the folder Desktop without expanding it")]
         public void WhenUserSelectsTheFolderDesktopWithoutExpandingIt()
         {
-            elementsPage.GetCheckboxElement("desktop").Click();
+            _elementsPage.GetCheckboxElement("desktop").Click();
         }
 
         [When(@"User expands Documents folder")]
         public void WhenUserExpandsDocumentsFolder()
         {   
-            elementsPage.GetToggleElement(3).Click();
+            _elementsPage.GetToggleElement(3).Click();
                 
         }
 
         [When(@"User expands WorkSpace folder")]
         public void WhenUserExpandsWorkSpaceFolder()
         {
-            elementsPage.GetToggleElement(4).Click();
+            _elementsPage.GetToggleElement(4).Click();
         }
 
         [Then(@"User selects Angular and Veu")]
         public void ThenUserSelectsAngularAndVeu()
         {
-            elementsPage.GetCheckboxElement("angular").Click();
-            elementsPage.GetCheckboxElement("veu").Click();
+            _elementsPage.GetCheckboxElement("angular").Click();
+            _elementsPage.GetCheckboxElement("veu").Click();
 
         }
 
         [When(@"User expands the folder Office")]
         public void WhenUserExpandsTheFolderOffice()
         {
-            elementsPage.GetToggleElement(5).Click();
+            _elementsPage.GetToggleElement(5).Click();
         }
 
         [Then(@"User clicks on each element in the Office folder one by one")]
@@ -62,27 +79,33 @@ namespace SpecFlowProject1.StepDefinitions
         {
             foreach (var element in new[] { "public", "private", "classified", "general" })
             {
-                elementsPage.GetCheckboxElement(element).Click();
+                _elementsPage.GetCheckboxElement(element).Click();
             }
 
         }
 
-        [When(@"User click toggle of the folder ""([^""]*)""")]
-        public void WhenUserClickToggleOfTheFolder(string downloads)
+        [When(@"User click toggle of the folder Downloads")]
+        public void WhenUserClickToggleOfTheFolderDownloads()
         {
-            throw new PendingStepException();
+            _elementsPage.GetToggleElement(6).Click();
         }
 
-        [Then(@"User clicks title of  ""([^""]*)"" folder \(by clicking on its name\)")]
-        public void ThenUserClicksTitleOfFolderByClickingOnItsName(string downloads)
+        [Then(@"User clicks title of  Downloads folder \(by clicking on its name\)")]
+        public void ThenUserClicksTitleOfDownloadsFolderByClickingOnItsName()
         {
-            throw new PendingStepException();
+            _elementsPage.DownloadsFolderTitle.Click();
         }
 
         [Then(@"the output should be ""([^""]*)""")]
-        public void ThenTheOutputShouldBe(string p0)
+        public void ThenTheOutputShouldBe(string expectedOutput)
         {
-            throw new PendingStepException();
+            string actualOutput = _elementsPage.GetActualOutput();
+            Assert.AreEqual(expectedOutput, actualOutput);
+        }
+        [AfterScenario]
+        public void AfterScenario()
+        {
+            _webDriver?.Quit();
         }
     }
 }

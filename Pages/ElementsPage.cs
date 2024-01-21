@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -32,7 +33,8 @@ namespace SpecFlowProject1.Pages
         public IWebElement GetResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
 
         //CheckBox section
-        // to replace with parametrize 
+
+
         public IWebElement CheckBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Check Box']"));
 
         // toggle elements to expand the folders
@@ -146,7 +148,10 @@ namespace SpecFlowProject1.Pages
         // CheckBox methods
 
 
-        
+        public string GetActualOutput()
+        {
+            return ResultingMessage.Text;
+        }
 
 
 

@@ -78,29 +78,21 @@ namespace SpecFlowProject1.Features
 #line 4
 #line hidden
 #line 5
-testRunner.Given("User opens browser", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
-#line hidden
-#line 6
 testRunner.When("User enters URL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 7
-testRunner.And("User clicks Elements icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
-#line hidden
-#line 8
-testRunner.Then("Elements page is displayed", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 6
+testRunner.Then("User clicks Elements icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
         }
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verifying Text Box feature")]
-        [NUnit.Framework.CategoryAttribute("TextBox")]
         public void VerifyingTextBoxFeature()
         {
-            string[] tagsOfScenario = new string[] {
-                    "TextBox"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verifying Text Box feature", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 11
+#line 9
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -113,7 +105,7 @@ this.ScenarioInitialize(scenarioInfo);
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 12
+#line 10
  testRunner.When("User clicks Text Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -126,10 +118,10 @@ this.FeatureBackground();
                             "Lesi 22, Kiev, 34433, Ukraine"});
                 table1.AddRow(new string[] {
                             "The same as above"});
-#line 13
+#line 11
  testRunner.Then("User enters the following data in Text Box fields", ((string)(null)), table1, "Then ");
 #line hidden
-#line 19
+#line 17
  testRunner.When("User clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -142,7 +134,7 @@ this.FeatureBackground();
                             "Current Address :Lesi 22, Kiev, 34433, Ukraine"});
                 table2.AddRow(new string[] {
                             "Permananet Address :The same as above"});
-#line 20
+#line 18
  testRunner.Then("User verifies the following data is displayed in Table", ((string)(null)), table2, "Then ");
 #line hidden
             }
@@ -151,14 +143,12 @@ this.FeatureBackground();
         
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Verify folder selection and output")]
-        [NUnit.Framework.CategoryAttribute("CheckBox")]
         public void VerifyFolderSelectionAndOutput()
         {
-            string[] tagsOfScenario = new string[] {
-                    "CheckBox"};
+            string[] tagsOfScenario = ((string[])(null));
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify folder selection and output", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 29
+#line 26
   this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
@@ -171,37 +161,37 @@ this.FeatureBackground();
 #line 4
 this.FeatureBackground();
 #line hidden
-#line 30
+#line 27
     testRunner.When("User clicks Check Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 31
+#line 28
  testRunner.And("User expands the folder Home", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 32
+#line 29
     testRunner.And("User selects the folder Desktop without expanding it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 33
+#line 30
  testRunner.And("User expands Documents folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 34
+#line 31
  testRunner.And("User expands WorkSpace folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
-#line 35
+#line 32
  testRunner.Then("User selects Angular and Veu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 36
+#line 33
     testRunner.When("User expands the folder Office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 37
+#line 34
     testRunner.Then("User clicks on each element in the Office folder one by one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 38
-    testRunner.When("User click toggle of the folder \"Downloads\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line 35
+    testRunner.When("User click toggle of the folder Downloads", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
-#line 39
-    testRunner.Then("User clicks title of  \"Downloads\" folder (by clicking on its name)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line 36
+    testRunner.Then("User clicks title of  Downloads folder (by clicking on its name)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
-#line 40
+#line 37
     testRunner.And("the output should be \"You have selected : desktop notes commands angular veu offi" +
                         "ce public private classified general downloads wordFile excelFile\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden

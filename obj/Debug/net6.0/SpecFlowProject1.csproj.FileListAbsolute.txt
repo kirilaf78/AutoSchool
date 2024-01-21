@@ -115,3 +115,4 @@ C:\Users\afanasyev.k\source\repos\SpecFlowProject1\bin\Debug\net6.0\selenium-man
 C:\Users\afanasyev.k\source\repos\SpecFlowProject1\bin\Debug\net6.0\selenium-manager\macos\selenium-manager
 C:\Users\afanasyev.k\source\repos\SpecFlowProject1\bin\Debug\net6.0\selenium-manager\windows\selenium-manager.exe
 C:\Users\afanasyev.k\source\repos\SpecFlowProject1\bin\Debug\net6.0\WebDriver.dll
+C:\Users\afanasyev.k\source\repos\SpecFlowProject1\obj\Debug\net6.0\SpecFlowProject1.sourcelink.json

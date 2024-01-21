@@ -11,39 +11,32 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsTextBoxStepDefinitions
     {
-        IWebDriver webDriver;
-        ElementsPage elementsPage;
+        IWebDriver _webDriver;
+        ElementsPage _elementsPage;
         string URL = "https://demoqa.com/";
 
-        [Given(@"User opens browser")]
-        public void GivenUserOpensBrowser()
-        {
-            webDriver = new ChromeDriver();
-            elementsPage = new ElementsPage(webDriver);
-        }
 
         [When(@"User enters URL")]
         public void WhenUserEntersURL()
+
         {
-            webDriver.Navigate().GoToUrl(URL);
-            webDriver.Manage().Window.Maximize();
+            _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
+            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
+            _webDriver.Navigate().GoToUrl(URL);
+            _webDriver.Manage().Window.Maximize();
         }
 
-        [When(@"User clicks Elements icon")]
-        public void WhenUserClicksElementsIcon()
+        [Then(@"User clicks Elements icon")]
+        public void ThenUserClicksElementsIcon()
         {
-            elementsPage.ClickElementsLink();
+            _elementsPage.ClickElementsLink();
         }
 
-        [Then(@"Elements page is displayed")]
-        public void ThenElementsPageIsDisplayed()
-        {
-        }
 
         [When(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            elementsPage.ClickCategory(elementsPage.TextBox);
+            _elementsPage.ClickCategory(_elementsPage.TextBox);
         }
 
         [Then(@"User enters the following data in Text Box fields")]
@@ -55,16 +48,16 @@ namespace SpecFlowProject1.StepDefinitions
                 switch (data.FieldData)
                 {
                     case "Viktor Gusev":
-                        elementsPage.EnterName(data.FieldData);
+                        _elementsPage.EnterName(data.FieldData);
                         break;
                     case "karage1625@bayxs.com":
-                        elementsPage.EnterEmail(data.FieldData);
+                        _elementsPage.EnterEmail(data.FieldData);
                         break;
                     case "Lesi 22, Kiev, 34433, Ukraine":
-                        elementsPage.EnterCurrentAddress(data.FieldData);
+                        _elementsPage.EnterCurrentAddress(data.FieldData);
                         break;
                     case "The same as above":
-                        elementsPage.EnterPermanentAddress(data.FieldData);
+                        _elementsPage.EnterPermanentAddress(data.FieldData);
                         break;
                 }
             }
@@ -73,18 +66,23 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User clicks Submit button")]
         public void WhenUserClicksSubmitButton()
         {
-            elementsPage.ClickSubmitButton();
+            _elementsPage.ClickSubmitButton();
         }
 
         [Then(@"User verifies the following data is displayed in Table")]
         public void ThenUserVerifiesTheFollowingDataIsDisplayedInTable(Table table)
-        {           
-                var expectedData = table.CreateSet<TableDataDisplayed>();
-                Assert.That(elementsPage.GetResultNameText(), Is.EqualTo(expectedData.ElementAt(0).TableData));
-                Assert.That(elementsPage.GetResultEmailText(), Is.EqualTo(expectedData.ElementAt(1).TableData));
-                Assert.That(elementsPage.GetResultCurrentAddressText(), Is.EqualTo(expectedData.ElementAt(2).TableData));
-                Assert.That(elementsPage.GetResultPermanentAddressText(), Is.EqualTo(expectedData.ElementAt(3).TableData));
-                webDriver.Close();
+        {
+            var expectedData = table.CreateSet<TableDataDisplayed>();
+            Assert.That(_elementsPage.GetResultNameText(), Is.EqualTo(expectedData.ElementAt(0).TableData));
+            Assert.That(_elementsPage.GetResultEmailText(), Is.EqualTo(expectedData.ElementAt(1).TableData));
+            Assert.That(_elementsPage.GetResultCurrentAddressText(), Is.EqualTo(expectedData.ElementAt(2).TableData));
+            Assert.That(_elementsPage.GetResultPermanentAddressText(), Is.EqualTo(expectedData.ElementAt(3).TableData));
+        }
+
+        [AfterScenario]
+        public void AfterScenario()
+        {
+             _webDriver?.Quit();
         }
 
 
@@ -98,6 +96,6 @@ namespace SpecFlowProject1.StepDefinitions
             public string TableData { get; set; }
         }
 
-        
+
     }
 }
