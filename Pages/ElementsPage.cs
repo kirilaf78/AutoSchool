@@ -146,6 +146,11 @@ namespace SpecFlowProject1.Pages
 
 
         // CheckBox methods
+        public void ScrollDown(IWebDriver driver, int pixels)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            js.ExecuteScript($"window.scrollBy(0, {pixels});");
+        }
 
 
         public string GetActualOutput()

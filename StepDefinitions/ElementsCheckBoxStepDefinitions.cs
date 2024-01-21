@@ -22,8 +22,6 @@ namespace SpecFlowProject1.StepDefinitions
             _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
 
-            // webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
-
 
             //elementsPage.ClickCategory(elementsPage.InitializeWaitAndCheckbox());
 
@@ -77,6 +75,10 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"User clicks on each element in the Office folder one by one")]
         public void ThenUserClicksOnEachElementInTheOfficeFolderOneByOne()
         {
+            // Thread.Sleep(10000);
+            //_webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+            _elementsPage.ScrollDown(_webDriver, 500);
+
             foreach (var element in new[] { "public", "private", "classified", "general" })
             {
                 _elementsPage.GetCheckboxElement(element).Click();
@@ -87,6 +89,7 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User click toggle of the folder Downloads")]
         public void WhenUserClickToggleOfTheFolderDownloads()
         {
+
             _elementsPage.GetToggleElement(6).Click();
         }
 
@@ -99,7 +102,7 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"the output should be ""([^""]*)""")]
         public void ThenTheOutputShouldBe(string expectedOutput)
         {
-            string actualOutput = _elementsPage.GetActualOutput();
+            string actualOutput = _elementsPage.GetActualOutput().Replace("\r\n", " ");
             Assert.AreEqual(expectedOutput, actualOutput);
         }
         [AfterScenario]
