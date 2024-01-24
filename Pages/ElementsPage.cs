@@ -17,10 +17,15 @@ namespace SpecFlowProject1.Pages
         {
             this.webDriver = webDriver; 
         }
+
         public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
+
+        // parametrize elements such as Text Box, Check Box, Web Tables ...
+
+        public IWebElement SectionElements(string section) => webDriver.FindElement(By.XPath($"//span[normalize-space()='{section}']"));
+       
         // TexBox section
 
-        public IWebElement TextBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Text Box']"));
 
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
@@ -35,35 +40,27 @@ namespace SpecFlowProject1.Pages
         //CheckBox section
 
 
-        public IWebElement CheckBox => webDriver.FindElement(By.XPath("//span[normalize-space()='Check Box']"));
 
-        // toggle elements to expand the folders
+        // parametrize toggle elements to expand the folders
         public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
-        //public IWebElement HomeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[1]"));
-        //public IWebElement DocumentsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[3]"));
-        //public IWebElement WorkSpaceToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[4]"));
-        //public IWebElement OfficeToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[5]"));
-        //public IWebElement DownloadsToggle => webDriver.FindElement(By.XPath("(//button[@title='Toggle'])[6]"));
 
-
+        // parametrize checkbox elements
         public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='tree-node-{checkboxTitle}']//span[@class='rct-checkbox']"));
-        //public IWebElement DesktopCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-desktop']//span[@class='rct-checkbox']"));
-        //public IWebElement AngularCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-angular']//span[@class='rct-checkbox']"));
-        //public IWebElement VeuCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-veu']//span[@class='rct-checkbox']"));
-
-        //public IWebElement PublicCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-public']//span[@class='rct-checkbox']"));
-
-        //public IWebElement PrivateCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-private']//span[@class='rct-checkbox']"));
-
-        //public IWebElement ClassifiedCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-classified']//span[@class='rct-checkbox']"));
-
-        //public IWebElement GeneralCheckbox => webDriver.FindElement(By.XPath("//label[@for='tree-node-general']//span[@class='rct-checkbox']"));
 
         public IWebElement DownloadsFolderTitle => webDriver.FindElement(By.XPath("//span[contains(text(),'Downloads')]"));
 
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
 
-        
+        // Web Tables section
+        public IWebElement SalaryColumnTitle => webDriver.FindElement(By.XPath("//div[contains(text(),'Salary')]"));
+        string salaryValue0 = "200";
+        string salaryValue1 = "1000";
+        string salaryValue2 = "1200";
+
+
+        // parametrize salary elements
+
+        public IWebElement SalaryElement(string value) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{value}']"));
         
         public void ClickElementsLink()
         {
@@ -159,7 +156,20 @@ namespace SpecFlowProject1.Pages
         }
 
 
+        // Web Tables methods
 
+        public List<int> GetSalaryValues()
+        {
+            List<int> salaryValues = new List<int>();
+            salaryValues.Add(int.Parse(SalaryElement(salaryValue0).Text));
+            salaryValues.Add(int.Parse(SalaryElement(salaryValue1).Text));
+            salaryValues.Add(int.Parse(SalaryElement(salaryValue2).Text));
+            return salaryValues;
+        }
 
+        public bool AreValuesInAscendingOrder(List<int> values)
+        {
+            return values.SequenceEqual(values.OrderBy(v => v));
+        }
     }
 }

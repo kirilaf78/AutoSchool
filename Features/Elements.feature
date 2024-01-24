@@ -36,4 +36,9 @@ Scenario: Verifying Text Box feature
     Then User clicks title of  Downloads folder (by clicking on its name)
     And the output should be "You have selected : desktop notes commands angular veu office public private classified general downloads wordFile excelFile"
 
-
+Scenario: Verify Web Tables section
+ When User clicks Web Tables title
+ And User clicks Salary column 
+ Then values in the column sorted in ascending order
+ When User click Delete icon on the third row of the table
+ Then Compliance are not displayed in Department column

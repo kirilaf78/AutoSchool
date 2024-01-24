@@ -36,7 +36,7 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            _elementsPage.ClickCategory(_elementsPage.TextBox);
+            _elementsPage.ClickCategory(_elementsPage.SectionElements("Text Box"));
         }
 
         [Then(@"User enters the following data in Text Box fields")]
@@ -77,12 +77,6 @@ namespace SpecFlowProject1.StepDefinitions
             Assert.That(_elementsPage.GetResultEmailText(), Is.EqualTo(expectedData.ElementAt(1).TableData));
             Assert.That(_elementsPage.GetResultCurrentAddressText(), Is.EqualTo(expectedData.ElementAt(2).TableData));
             Assert.That(_elementsPage.GetResultPermanentAddressText(), Is.EqualTo(expectedData.ElementAt(3).TableData));
-        }
-
-        [AfterScenario]
-        public void AfterScenario()
-        {
-             _webDriver?.Quit();
         }
 
 

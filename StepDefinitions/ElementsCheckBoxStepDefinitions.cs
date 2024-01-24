@@ -29,7 +29,7 @@ namespace SpecFlowProject1.StepDefinitions
             //js.ExecuteScript("arguments[0].click();", elementsPage.CheckBox);
             //Console.WriteLine(webDriver.PageSource);
 
-            _elementsPage.ClickCategory(_elementsPage.CheckBox);
+            _elementsPage.ClickCategory(_elementsPage.SectionElements("Check Box"));
         }
 
         [When(@"User expands the folder Home")]
@@ -105,10 +105,6 @@ namespace SpecFlowProject1.StepDefinitions
             string actualOutput = _elementsPage.GetActualOutput().Replace("\r\n", " ");
             Assert.AreEqual(expectedOutput, actualOutput);
         }
-        [AfterScenario]
-        public void AfterScenario()
-        {
-            _webDriver?.Quit();
-        }
+
     }
 }
