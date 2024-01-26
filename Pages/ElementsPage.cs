@@ -18,12 +18,27 @@ namespace SpecFlowProject1.Pages
             this.webDriver = webDriver; 
         }
 
+        // Elements category on Main page
         public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
+        public void ClickElementsLink()
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
+            js.ExecuteScript("arguments[0].click();", ElementsOnMain);
+        }
+
 
         // parametrize elements such as Text Box, Check Box, Web Tables ...
 
         public IWebElement SectionElements(string section) => webDriver.FindElement(By.XPath($"//span[normalize-space()='{section}']"));
-       
+
+        // to click sections  such as Text Box, Check Box.... on Elements page
+        public void ClickSection(IWebElement element)
+        {
+            element.Click();
+        }
+
+
+
         // TexBox section
 
 
@@ -39,8 +54,6 @@ namespace SpecFlowProject1.Pages
 
         //CheckBox section
 
-
-
         // parametrize toggle elements to expand the folders
         public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
 
@@ -53,26 +66,17 @@ namespace SpecFlowProject1.Pages
 
         // Web Tables section
         public IWebElement SalaryColumnTitle => webDriver.FindElement(By.XPath("//div[contains(text(),'Salary')]"));
-        string salaryValue0 = "200";
-        string salaryValue1 = "1000";
-        string salaryValue2 = "1200";
+        string salaryValue0 = "2000";
+        string salaryValue1 = "10000";
+        string salaryValue2 = "12000";
 
 
         // parametrize salary elements
 
         public IWebElement SalaryElement(string value) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{value}']"));
-        
-        public void ClickElementsLink()
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
-            js.ExecuteScript("arguments[0].click();", ElementsOnMain);
-        }
 
-        // to click categories  such as Text Box, Check Box.... on Elements page
-        public void ClickCategory(IWebElement element)
-        {
-            element.Click();
-        }
+        //public IWebElement DepartmentColumnElements(string elementName) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{elementName}']"));
+        public IWebElement DeleteIcon => webDriver.FindElement(By.XPath("(//*[name()='path'])[57]"));
 
         // TexBox methods
 
@@ -171,5 +175,14 @@ namespace SpecFlowProject1.Pages
         {
             return values.SequenceEqual(values.OrderBy(v => v));
         }
+
+        public bool IsComplianceElementPresent()
+        {
+            var complianceElementsBeforeDeletion = webDriver.FindElements(By.XPath("//div[normalize-space()='Compliance']"));
+
+            return complianceElementsBeforeDeletion.Count > 0;
+        }
+
+
     }
 }

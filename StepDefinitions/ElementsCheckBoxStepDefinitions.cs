@@ -23,13 +23,13 @@ namespace SpecFlowProject1.StepDefinitions
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
 
 
-            //elementsPage.ClickCategory(elementsPage.InitializeWaitAndCheckbox());
+            //elementsPage.ClickSection(elementsPage.InitializeWaitAndCheckbox());
 
             //IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             //js.ExecuteScript("arguments[0].click();", elementsPage.CheckBox);
             //Console.WriteLine(webDriver.PageSource);
 
-            _elementsPage.ClickCategory(_elementsPage.SectionElements("Check Box"));
+            _elementsPage.ClickSection(_elementsPage.SectionElements("Check Box"));
         }
 
         [When(@"User expands the folder Home")]

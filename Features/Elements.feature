@@ -6,7 +6,7 @@ When User enters URL
 Then User clicks Elements icon
 
 
-Scenario: Verifying Text Box feature
+Scenario: Verifying Text Box section
 	When User clicks Text Box title
 	Then User enters the following data in Text Box fields 
 	| FieldData                     |
@@ -23,7 +23,7 @@ Scenario: Verifying Text Box feature
 	| Permananet Address :The same as above          |
 
 
-  Scenario: Verify folder selection and output
+  Scenario: Verify folder selection and output of Check Box section
     When User clicks Check Box title
 	And User expands the folder Home
     And User selects the folder Desktop without expanding it
@@ -36,9 +36,12 @@ Scenario: Verifying Text Box feature
     Then User clicks title of  Downloads folder (by clicking on its name)
     And the output should be "You have selected : desktop notes commands angular veu office public private classified general downloads wordFile excelFile"
 
-Scenario: Verify Web Tables section
+Scenario: Verify Salary column of Web Tables section
  When User clicks Web Tables title
  And User clicks Salary column 
  Then values in the column sorted in ascending order
- When User click Delete icon on the third row of the table
+
+ Scenario: Delete second row from Web Tables section and verify Compliance are not displayed
+ Given User clicks Web Tables title
+ When User click Delete icon on the second row of the table
  Then Compliance are not displayed in Department column
