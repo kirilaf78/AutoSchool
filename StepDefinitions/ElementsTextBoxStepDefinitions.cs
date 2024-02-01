@@ -16,7 +16,7 @@ namespace SpecFlowProject1.StepDefinitions
         string URL = "https://demoqa.com/";
 
 
-        [When(@"User enters URL")]
+        [Given(@"User enters URL")]
         public void WhenUserEntersURL()
 
         {
@@ -26,20 +26,22 @@ namespace SpecFlowProject1.StepDefinitions
             _webDriver.Manage().Window.Maximize();
         }
 
-        [Then(@"User clicks Elements icon")]
+        [Given(@"User clicks Elements icon")]
         public void ThenUserClicksElementsIcon()
         {
             _elementsPage.ClickElementsLink();
         }
 
 
-        [When(@"User clicks Text Box title")]
+        [Given(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
+            Thread.Sleep(1000);
+            _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements("Text Box"));
         }
 
-        [Then(@"User enters the following data in Text Box fields")]
+        [When(@"User enters the following data in Text Box fields")]
         public void ThenUserEntersTheFollowingDataInTextBoxFields(Table table)
         {
             var inputData = table.CreateSet<FieldDataEntered>();

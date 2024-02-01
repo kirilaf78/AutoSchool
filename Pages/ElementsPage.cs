@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
@@ -13,10 +15,12 @@ namespace SpecFlowProject1.Pages
     {
         IWebDriver webDriver;
 
+
         public ElementsPage(IWebDriver webDriver)
         {
-            this.webDriver = webDriver; 
+            this.webDriver = webDriver;
         }
+
 
         // Elements category on Main page
         public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
@@ -41,7 +45,7 @@ namespace SpecFlowProject1.Pages
 
         // TexBox section
 
-
+        public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
 
@@ -78,7 +82,18 @@ namespace SpecFlowProject1.Pages
         //public IWebElement DepartmentColumnElements(string elementName) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{elementName}']"));
         public IWebElement DeleteIcon => webDriver.FindElement(By.XPath("(//*[name()='path'])[57]"));
 
+
+        // Buttons section
+
+        public IWebElement ButtonElement(string name) => webDriver.FindElement(By.XPath($"//button[@id='{name}']"));
+
+        public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
+
         // TexBox methods
+        public void ClickConsent()
+        {
+            Consent.Click();
+        }
 
         public ElementsPage EnterName(string name)
         {
@@ -183,6 +198,40 @@ namespace SpecFlowProject1.Pages
             return complianceElementsBeforeDeletion.Count > 0;
         }
 
+        // Button methods
+
+
+
+        public string ClickButtonAndGetMessage(string buttonName)
+        {
+            Actions action = new Actions(webDriver);
+            string resultMessage = "";
+            string xpathDouble = "doubleClickBtn";
+            string xpathRight = "rightClickBtn";
+            string xpathClick = "itJ9X";
+            switch (buttonName)
+            {
+                case "Double click me":
+                    action.DoubleClick(ButtonElement(xpathDouble)).Build().Perform();
+                    Thread.Sleep(10000);
+                    resultMessage = ButtonSectionMessage("doubleClickMessage").Text;
+                    break;
+
+                case "Right click me":
+                    action.ContextClick(ButtonElement(xpathRight)).Build().Perform();
+                    Thread.Sleep(10000);
+                    resultMessage = ButtonSectionMessage("rightClickMessage").Text;
+                    break;
+
+                case "Click me":
+                    ButtonElement(xpathClick).Click();
+                    Thread.Sleep(1000);
+                    resultMessage = ButtonSectionMessage("dynamicClickMessage").Text;
+                    break;
+            }
+
+            return resultMessage;
+        }
 
     }
 }

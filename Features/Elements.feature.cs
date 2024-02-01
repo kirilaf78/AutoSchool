@@ -78,10 +78,10 @@ namespace SpecFlowProject1.Features
 #line 4
 #line hidden
 #line 5
-testRunner.When("User enters URL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("User enters URL", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 6
-testRunner.Then("User clicks Elements icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.And("User clicks Elements icon", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
         }
         
@@ -106,7 +106,7 @@ this.ScenarioInitialize(scenarioInfo);
 this.FeatureBackground();
 #line hidden
 #line 10
- testRunner.When("User clicks Text Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.Given("User clicks Text Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
                 TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
                             "FieldData"});
@@ -119,10 +119,10 @@ this.FeatureBackground();
                 table1.AddRow(new string[] {
                             "The same as above"});
 #line 11
- testRunner.Then("User enters the following data in Text Box fields", ((string)(null)), table1, "Then ");
+ testRunner.When("User enters the following data in Text Box fields", ((string)(null)), table1, "When ");
 #line hidden
 #line 17
- testRunner.When("User clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.And("User clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "TableData"});
@@ -149,7 +149,7 @@ this.FeatureBackground();
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Verify folder selection and output of Check Box section", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 26
-  this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -162,13 +162,13 @@ this.FeatureBackground();
 this.FeatureBackground();
 #line hidden
 #line 27
-    testRunner.When("User clicks Check Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User clicks Check Box title", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 28
  testRunner.And("User expands the folder Home", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 29
-    testRunner.And("User selects the folder Desktop without expanding it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User selects the folder Desktop without expanding it", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 30
  testRunner.And("User expands Documents folder", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -180,19 +180,19 @@ this.FeatureBackground();
  testRunner.Then("User selects Angular and Veu", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 33
-    testRunner.When("User expands the folder Office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User expands the folder Office", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 34
-    testRunner.Then("User clicks on each element in the Office folder one by one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User clicks on each element in the Office folder one by one", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 35
-    testRunner.When("User click toggle of the folder Downloads", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User click toggle of the folder Downloads", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 36
-    testRunner.Then("User clicks title of  Downloads folder (by clicking on its name)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then("User clicks title of  Downloads folder (by clicking on its name)", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 37
-    testRunner.And("the output should be \"You have selected : desktop notes commands angular veu offi" +
+ testRunner.And("the output should be \"You have selected : desktop notes commands angular veu offi" +
                         "ce public private classified general downloads wordFile excelFile\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
@@ -242,7 +242,7 @@ this.FeatureBackground();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Delete second row from Web Tables section and verify Compliance are not displayed" +
                     "", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 44
- this.ScenarioInitialize(scenarioInfo);
+this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
             {
@@ -262,6 +262,44 @@ this.FeatureBackground();
 #line hidden
 #line 47
  testRunner.Then("Compliance are not displayed in Department column", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            this.ScenarioCleanup();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("Clicking buttons and verifying messages")]
+        [NUnit.Framework.TestCaseAttribute("Double click me", "You have done a double click", null)]
+        [NUnit.Framework.TestCaseAttribute("Right click me", "You have done a right click", null)]
+        [NUnit.Framework.TestCaseAttribute("Click me", "You have done a dynamic click", null)]
+        public void ClickingButtonsAndVerifyingMessages(string buttonName, string text, string[] exampleTags)
+        {
+            string[] tagsOfScenario = exampleTags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("buttonName", buttonName);
+            argumentsOfScenario.Add("text", text);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Clicking buttons and verifying messages", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 49
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                this.ScenarioStart();
+#line 4
+this.FeatureBackground();
+#line hidden
+#line 50
+ testRunner.Given("User clicks Buttons", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 51
+ testRunner.When(string.Format("User clicks {0} button", buttonName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 52
+ testRunner.Then(string.Format("\"{0}\" should be displayed", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
