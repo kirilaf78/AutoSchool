@@ -36,7 +36,7 @@ namespace SpecFlowProject1.StepDefinitions
         [Given(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            Thread.Sleep(1000);
+            // Thread.Sleep(1000);
             _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements("Text Box"));
         }

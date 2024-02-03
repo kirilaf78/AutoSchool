@@ -18,7 +18,7 @@ namespace SpecFlowProject1.StepDefinitions
             _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
             _elementsPage.ClickSection(_elementsPage.SectionElements("Web Tables"));
-            Assert.IsTrue(_elementsPage.IsComplianceElementPresent(), "Compliance element should be present before deleting a row");
+            Assert.That(_elementsPage.IsComplianceElementPresent(), Is.True, "Compliance element should be present before deleting a row");
         }
 
         [When(@"User click Delete icon on the second row of the table")]
@@ -31,7 +31,7 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"Compliance are not displayed in Department column")]
         public void ThenComplianceAreNotDisplayedInDepartmentColumn()
         {
-            Assert.IsFalse(_elementsPage.IsComplianceElementPresent(), "Compliance element should not be present after deleting a row");
+            Assert.That(_elementsPage.IsComplianceElementPresent(), Is.False, "Compliance element should not be present after deleting a row");
         }
     }
 }

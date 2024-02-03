@@ -15,7 +15,7 @@ namespace SpecFlowProject1.StepDefinitions
         private ElementsPage _elementsPage;
 
 
-        [When(@"User clicks Check Box title")]
+        [Given(@"User clicks Check Box title")]
         public void WhenUserClicksCheckBoxTitle()
 
         {
@@ -28,8 +28,9 @@ namespace SpecFlowProject1.StepDefinitions
             //IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             //js.ExecuteScript("arguments[0].click();", elementsPage.CheckBox);
             //Console.WriteLine(webDriver.PageSource);
-
+            _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements("Check Box"));
+
         }
 
         [When(@"User expands the folder Home")]
@@ -47,9 +48,9 @@ namespace SpecFlowProject1.StepDefinitions
 
         [When(@"User expands Documents folder")]
         public void WhenUserExpandsDocumentsFolder()
-        {   
+        {
             _elementsPage.GetToggleElement(3).Click();
-                
+
         }
 
         [When(@"User expands WorkSpace folder")]
@@ -58,7 +59,7 @@ namespace SpecFlowProject1.StepDefinitions
             _elementsPage.GetToggleElement(4).Click();
         }
 
-        [Then(@"User selects Angular and Veu")]
+        [When(@"User selects Angular and Veu")]
         public void ThenUserSelectsAngularAndVeu()
         {
             _elementsPage.GetCheckboxElement("angular").Click();
@@ -72,7 +73,7 @@ namespace SpecFlowProject1.StepDefinitions
             _elementsPage.GetToggleElement(5).Click();
         }
 
-        [Then(@"User clicks on each element in the Office folder one by one")]
+        [When(@"User clicks on each element in the Office folder one by one")]
         public void ThenUserClicksOnEachElementInTheOfficeFolderOneByOne()
         {
             // Thread.Sleep(10000);
@@ -93,7 +94,7 @@ namespace SpecFlowProject1.StepDefinitions
             _elementsPage.GetToggleElement(6).Click();
         }
 
-        [Then(@"User clicks title of  Downloads folder \(by clicking on its name\)")]
+        [When(@"User clicks title of  Downloads folder \(by clicking on its name\)")]
         public void ThenUserClicksTitleOfDownloadsFolderByClickingOnItsName()
         {
             _elementsPage.DownloadsFolderTitle.Click();
@@ -103,7 +104,7 @@ namespace SpecFlowProject1.StepDefinitions
         public void ThenTheOutputShouldBe(string expectedOutput)
         {
             string actualOutput = _elementsPage.GetActualOutput().Replace("\r\n", " ");
-            Assert.AreEqual(expectedOutput, actualOutput);
+            Assert.That(actualOutput, Is.EqualTo(expectedOutput), "The output does not match the expected output");
         }
 
     }

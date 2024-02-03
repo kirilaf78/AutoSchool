@@ -31,7 +31,7 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"values in the column sorted in ascending order")]
         public void ThenValuesInTheColumnSortedInAscendingOrder()
         {
-            Assert.IsTrue(_elementsPage.AreValuesInAscendingOrder(_elementsPage.GetSalaryValues()));
+            Assert.That(_elementsPage.AreValuesInAscendingOrder(_elementsPage.GetSalaryValues()), Is.True, "Values are not in ascending order");
         }
 
     }
