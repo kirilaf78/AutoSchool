@@ -44,25 +44,13 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User enters the following data in Text Box fields")]
         public void ThenUserEntersTheFollowingDataInTextBoxFields(Table table)
         {
-            var inputData = table.CreateSet<FieldDataEntered>();
-            foreach (var data in inputData)
-            {
-                switch (data.FieldData)
-                {
-                    case "Viktor Gusev":
-                        _elementsPage.EnterName(data.FieldData);
-                        break;
-                    case "karage1625@bayxs.com":
-                        _elementsPage.EnterEmail(data.FieldData);
-                        break;
-                    case "Lesi 22, Kiev, 34433, Ukraine":
-                        _elementsPage.EnterCurrentAddress(data.FieldData);
-                        break;
-                    case "The same as above":
-                        _elementsPage.EnterPermanentAddress(data.FieldData);
-                        break;
-                }
-            }
+            var row = table.Rows.FirstOrDefault();
+
+            _elementsPage.EnterName(row["name"])
+                        .EnterEmail(row["email"])
+                        .EnterCurrentAddress(row["address1"])
+                        .EnterPermanentAddress(row["address2"]);
+
         }
 
         [When(@"User clicks Submit button")]
@@ -74,22 +62,15 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"User verifies the following data is displayed in Table")]
         public void ThenUserVerifiesTheFollowingDataIsDisplayedInTable(Table table)
         {
-            var expectedData = table.CreateSet<TableDataDisplayed>();
-            Assert.That(_elementsPage.GetResultNameText(), Is.EqualTo(expectedData.ElementAt(0).TableData));
-            Assert.That(_elementsPage.GetResultEmailText(), Is.EqualTo(expectedData.ElementAt(1).TableData));
-            Assert.That(_elementsPage.GetResultCurrentAddressText(), Is.EqualTo(expectedData.ElementAt(2).TableData));
-            Assert.That(_elementsPage.GetResultPermanentAddressText(), Is.EqualTo(expectedData.ElementAt(3).TableData));
-        }
+            var row = table.Rows.FirstOrDefault(); // Get the first (and only) row from the table
 
 
-        public class FieldDataEntered
-        {
-            public string FieldData { get; set; }
-        }
+            // Assert that the actual values match the expected values
+            Assert.That(row["name"], Is.EqualTo(_elementsPage.GetResultNameText()));
+            Assert.That(row["email"], Is.EqualTo(_elementsPage.GetResultEmailText()));
+            Assert.That(row["address1"], Is.EqualTo(_elementsPage.GetResultCurrentAddressText()));
+            Assert.That(row["address2"], Is.EqualTo(_elementsPage.GetResultPermanentAddressText()));
 
-        public class TableDataDisplayed
-        {
-            public string TableData { get; set; }
         }
 
 
