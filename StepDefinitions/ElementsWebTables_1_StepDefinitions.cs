@@ -13,13 +13,15 @@ namespace SpecFlowProject1.StepDefinitions
         private IWebDriver _webDriver;
         private ElementsPage _elementsPage;
 
-        [When(@"User clicks Web Tables title")]
-        public void WhenUserClicksWebTablesTitle()
+        [Given(@"User navigates to Web Tables section")]
+        public void GivenUserNavigatesToWebTablesSection()
         {
             _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
+            _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements("Web Tables"));
         }
+
 
         [When(@"User clicks Salary column")]
         public void WhenUserClicksSalaryColumn()

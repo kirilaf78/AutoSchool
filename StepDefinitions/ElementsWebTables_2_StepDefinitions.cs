@@ -17,6 +17,7 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
+            _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements("Web Tables"));
             Assert.That(_elementsPage.IsComplianceElementPresent(), Is.True, "Compliance element should be present before deleting a row");
         }
