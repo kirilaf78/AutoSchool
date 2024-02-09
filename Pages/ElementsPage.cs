@@ -63,7 +63,7 @@ namespace SpecFlowProject1.Pages
 
         // parametrize checkbox elements
         public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='tree-node-{checkboxTitle}']//span[@class='rct-checkbox']"));
-
+        public IList<IWebElement> GetCheckboxElements() => webDriver.FindElements(By.XPath("(//ol)[5]//span[@class='rct-checkbox']"));
         public IWebElement DownloadsFolderTitle => webDriver.FindElement(By.XPath("//span[contains(text(),'Downloads')]"));
 
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
@@ -166,6 +166,15 @@ namespace SpecFlowProject1.Pages
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
             js.ExecuteScript($"window.scrollBy(0, {pixels});");
+        }
+        public void ClickAllInOfficeFolder()
+        {
+            var checkboxElements = GetCheckboxElements();
+
+            foreach (var checkboxElement in checkboxElements)
+            {
+                checkboxElement.Click();
+            }
         }
 
 

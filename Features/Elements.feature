@@ -9,18 +9,12 @@ Background:
 Scenario: Verifying Text Box section
 	Given User clicks Text Box title
 	When User enters the following data in Text Box fields
-		| FieldData                     |
-		| Viktor Gusev                  |
-		| karage1625@bayxs.com          |
-		| Lesi 22, Kiev, 34433, Ukraine |
-		| The same as above             |
+		| name         | email                | address1                      | address2          |
+		| Viktor Gusev | karage1625@bayxs.com | Lesi 22, Kiev, 34433, Ukraine | The same as above |
 	And User clicks Submit button
 	Then User verifies the following data is displayed in Table
-		| TableData                                      |
-		| Name:Viktor Gusev                              |
-		| Email:karage1625@bayxs.com                     |
-		| Current Address :Lesi 22, Kiev, 34433, Ukraine |
-		| Permananet Address :The same as above          |
+		| name              | email                      | address1                                       | address2                              |
+		| Name:Viktor Gusev | Email:karage1625@bayxs.com | Current Address :Lesi 22, Kiev, 34433, Ukraine | Permananet Address :The same as above |
 
 @CheckBox
 Scenario: Verify folder selection and output of Check Box section

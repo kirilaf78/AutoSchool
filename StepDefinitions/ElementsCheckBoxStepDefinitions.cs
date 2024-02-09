@@ -64,7 +64,6 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _elementsPage.GetCheckboxElement("angular").Click();
             _elementsPage.GetCheckboxElement("veu").Click();
-
         }
 
         [When(@"User expands the folder Office")]
@@ -76,15 +75,8 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User clicks on each element in the Office folder one by one")]
         public void ThenUserClicksOnEachElementInTheOfficeFolderOneByOne()
         {
-            // Thread.Sleep(10000);
-            //_webDriver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
             _elementsPage.ScrollDown(_webDriver, 500);
-
-            foreach (var element in new[] { "public", "private", "classified", "general" })
-            {
-                _elementsPage.GetCheckboxElement(element).Click();
-            }
-
+            _elementsPage.ClickAllInOfficeFolder();
         }
 
         [When(@"User click toggle of the folder Downloads")]
