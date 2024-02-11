@@ -66,10 +66,13 @@ namespace SpecFlowProject1.StepDefinitions
 
 
             // Assert that the actual values match the expected values
-            Assert.That(row["name"], Is.EqualTo(_elementsPage.GetResultNameText()));
-            Assert.That(row["email"], Is.EqualTo(_elementsPage.GetResultEmailText()));
-            Assert.That(row["address1"], Is.EqualTo(_elementsPage.GetResultCurrentAddressText()));
-            Assert.That(row["address2"], Is.EqualTo(_elementsPage.GetResultPermanentAddressText()));
+            Assert.Multiple(() =>
+            {
+                Assert.That(row["name"], Is.EqualTo(_elementsPage.GetResultNameText()));
+                Assert.That(row["email"], Is.EqualTo(_elementsPage.GetResultEmailText()));
+                Assert.That(row["address1"], Is.EqualTo(_elementsPage.GetResultCurrentAddressText()));
+                Assert.That(row["address2"], Is.EqualTo(_elementsPage.GetResultPermanentAddressText()));
+            });
 
         }
 

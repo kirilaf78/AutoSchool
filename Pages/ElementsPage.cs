@@ -1,5 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V119.DOMDebugger;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -57,6 +58,19 @@ namespace SpecFlowProject1.Pages
         public IWebElement GetResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
 
         //CheckBox section
+
+        public string checkBoxDesktop = "desktop";
+        public string checkBoxAngular = "angular";
+        public string checkBoxVue = "veu";
+        public int scrollPixels = 500;
+        public int folderHomeNumber = 1;
+        public int folderOfficeNumber = 5;
+        public int folderDownloadsNumber = 6;
+        public int folderDocumentsNumber = 3;
+        public int folderWorkSpaceNumber = 4;
+
+
+
 
         // parametrize toggle elements to expand the folders
         public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
@@ -162,9 +176,34 @@ namespace SpecFlowProject1.Pages
 
 
         // CheckBox methods
-        public void ScrollDown(IWebDriver driver, int pixels)
+
+        public void ClickCheckBox(string checkBoxName)
         {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)driver;
+            GetCheckboxElement(checkBoxName).Click();
+
+        }
+        public void ClickToggle(int toggleNumber)
+        {
+            GetToggleElement(toggleNumber).Click();
+
+        }
+
+
+        public void ClickToggleOfTheFolderDownloads()
+        {
+            GetToggleElement(6).Click();
+
+        }
+
+        public void ClicksTitleOfDownloadsFolder()
+        {
+            DownloadsFolderTitle.Click();
+
+        }
+
+        public void ScrollDown(int pixels)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             js.ExecuteScript($"window.scrollBy(0, {pixels});");
         }
         public void ClickAllInOfficeFolder()
@@ -180,7 +219,7 @@ namespace SpecFlowProject1.Pages
 
         public string GetActualOutput()
         {
-            return ResultingMessage.Text;
+            return ResultingMessage.Text.Replace("\r\n", " ");
         }
 
 
