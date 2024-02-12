@@ -1,10 +1,5 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
 using SpecFlowProject1.Pages;
-using OpenQA.Selenium.Chrome;
-
-using System;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.StepDefinitions
 {
@@ -21,7 +16,7 @@ namespace SpecFlowProject1.StepDefinitions
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
 
             _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements("Check Box"));
+            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.checkBoxSection));
 
         }
 

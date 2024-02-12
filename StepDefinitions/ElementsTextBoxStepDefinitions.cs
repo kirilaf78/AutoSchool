@@ -1,29 +1,21 @@
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using SpecFlowProject1.Pages;
-using System;
-using TechTalk.SpecFlow;
-using TechTalk.SpecFlow.Assist;
 using NUnit.Framework;
+using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.StepDefinitions
 {
     [Binding]
     public class ElementsTextBoxStepDefinitions
     {
-        IWebDriver _webDriver;
         ElementsPage _elementsPage;
-        string URL = "https://demoqa.com/";
+
 
 
         [Given(@"User enters URL")]
         public void WhenUserEntersURL()
 
         {
-            _webDriver = (IWebDriver)ScenarioContext.Current["WebDriver"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-            _webDriver.Navigate().GoToUrl(URL);
-            _webDriver.Manage().Window.Maximize();
+            _elementsPage.OpenUrl();
         }
 
         [Given(@"User clicks Elements icon")]
@@ -38,7 +30,7 @@ namespace SpecFlowProject1.StepDefinitions
         {
             // Thread.Sleep(1000);
             _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements("Text Box"));
+            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.textBoxSection));
         }
 
         [When(@"User enters the following data in Text Box fields")]

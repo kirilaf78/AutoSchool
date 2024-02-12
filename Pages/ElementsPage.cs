@@ -1,14 +1,6 @@
-﻿using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities;
-using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V119.DOMDebugger;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SpecFlowProject1.Pages
 {
@@ -30,6 +22,7 @@ namespace SpecFlowProject1.Pages
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             js.ExecuteScript("arguments[0].click();", ElementsOnMain);
         }
+        public const string URL = "https://demoqa.com/";
 
 
         // parametrize elements such as Text Box, Check Box, Web Tables ...
@@ -45,6 +38,7 @@ namespace SpecFlowProject1.Pages
 
 
         // TexBox section
+        public string textBoxSection = "Text Box";
 
         public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
@@ -59,6 +53,7 @@ namespace SpecFlowProject1.Pages
 
         //CheckBox section
 
+        public string checkBoxSection = "Check Box";
         public string checkBoxDesktop = "desktop";
         public string checkBoxAngular = "angular";
         public string checkBoxVue = "veu";
@@ -83,6 +78,7 @@ namespace SpecFlowProject1.Pages
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
 
         // Web Tables section
+        public string webTablesSection = "Web Tables";
         public IWebElement SalaryColumnTitle => webDriver.FindElement(By.XPath("//div[contains(text(),'Salary')]"));
         string salaryValue0 = "2000";
         string salaryValue1 = "10000";
@@ -104,6 +100,12 @@ namespace SpecFlowProject1.Pages
         public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
 
         // TexBox methods
+        public void OpenUrl()
+        {
+            webDriver.Navigate().GoToUrl(URL);
+            webDriver.Manage().Window.Maximize();
+
+        }
         public void ClickConsent()
         {
             Consent.Click();
@@ -224,6 +226,17 @@ namespace SpecFlowProject1.Pages
 
 
         // Web Tables methods
+        public void ClickSalaryColumn()
+        {
+            SalaryColumnTitle.Click();
+
+        }
+
+        public void ClickDeleteIconOnTheSecondRowOfTheTable()
+        {
+            DeleteIcon.Click();
+
+        }
 
         public List<int> GetSalaryValues()
         {
