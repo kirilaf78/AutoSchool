@@ -94,8 +94,11 @@ namespace SpecFlowProject1.Pages
 
 
         // Buttons section
+        public string buttonsSection = "Buttons";
 
         public IWebElement ButtonElement(string name) => webDriver.FindElement(By.XPath($"//button[@id='{name}']"));
+
+        public IWebElement ClickMeButton => webDriver.FindElement(By.XPath("(//button[normalize-space()='Click Me'])[1]"));
 
         public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
 
@@ -261,6 +264,86 @@ namespace SpecFlowProject1.Pages
 
         // Button methods
 
+        //public string ClickButtonAndGetMessage(string buttonName)
+        //{
+        //    WebDriverWait wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(20)); // Adjust timeout as needed
+        //    string resultMessage = "";
+
+        //    switch (buttonName)
+        //    {
+        //        case "Double click me":
+        //            IWebElement doubleClickButton = wait.Until(e=>e.FindElement(By.Id("doubleClickBtn")));
+        //            Actions doubleClickAction = new Actions(webDriver);
+        //            doubleClickAction.DoubleClick(doubleClickButton).Build().Perform();
+        //            resultMessage = wait.Until(e => e.FindElement(By.Id("doubleClickMessage"))).Text;
+        //            break;
+
+        //        case "Right click me":
+        //            IWebElement rightClickButton = wait.Until(e => e.FindElement(By.Id("rightClickBtn")));
+        //            Actions rightClickAction = new Actions(webDriver);
+        //            rightClickAction.ContextClick(rightClickButton).Build().Perform();
+        //            resultMessage = wait.Until(e => e.FindElement(By.Id("rightClickMessage"))).Text;
+        //            break;
+
+        //        case "Click me":
+        //            IWebElement clickButton = wait.Until(e => e.FindElement(By.Id("nxXGl")));
+        //            clickButton.Click();
+        //            resultMessage = wait.Until(e => e.FindElement(By.Id("dynamicClickMessage"))).Text;
+        //            break;
+        //    }
+
+        //    return resultMessage;
+        //}
+
+
+        //public string ClickButtonAndGetMessage(string buttonName)
+        //{
+        //    string resultMessage = "";
+        //    string script = "";
+        //    string xpathDouble = "doubleClickBtn";
+        //    string xpathRight = "rightClickBtn";
+        //    string xpathClick = "nxXGl";
+
+        //    switch (buttonName)
+        //    {
+        //        case "Double click me":
+        //            script = $"var element = document.getElementById('{xpathDouble}'); element.click(); setTimeout(function(){{element.click();}}, 500);";
+        //            break;
+
+        //        case "Right click me":
+        //            script = $"document.getElementById('{xpathRight}').dispatchEvent(new MouseEvent('contextmenu'));";
+        //            break;
+
+        //        case "Click me":
+        //            script = $"document.getElementById('{xpathClick}').click();";
+        //            break;
+        //    }
+
+        //    // Execute the script using JavaScript executor
+        //    IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)webDriver;
+        //    jsExecutor.ExecuteScript(script);
+
+        //    // Wait for the action to complete (if necessary)
+        //    Thread.Sleep(5000); // Adjust the sleep time as needed
+
+        //    // Retrieve the result message
+        //    switch (buttonName)
+        //    {
+        //        case "Double click me":
+        //            resultMessage = ButtonSectionMessage("doubleClickMessage").Text;
+        //            break;
+
+        //        case "Right click me":
+        //            resultMessage = ButtonSectionMessage("rightClickMessage").Text;
+        //            break;
+
+        //        case "Click me":
+        //            resultMessage = ButtonSectionMessage("dynamicClickMessage").Text;
+        //            break;
+        //    }
+
+        //    return resultMessage;
+        //}
 
 
         public string ClickButtonAndGetMessage(string buttonName)
@@ -269,30 +352,32 @@ namespace SpecFlowProject1.Pages
             string resultMessage = "";
             string xpathDouble = "doubleClickBtn";
             string xpathRight = "rightClickBtn";
-            string xpathClick = "itJ9X";
             switch (buttonName)
             {
                 case "Double click me":
+                    ScrollDown(500);
                     action.DoubleClick(ButtonElement(xpathDouble)).Build().Perform();
-                    Thread.Sleep(10000);
                     resultMessage = ButtonSectionMessage("doubleClickMessage").Text;
                     break;
 
                 case "Right click me":
+                    ScrollDown(500);
+                    Thread.Sleep(1000);
                     action.ContextClick(ButtonElement(xpathRight)).Build().Perform();
-                    Thread.Sleep(10000);
                     resultMessage = ButtonSectionMessage("rightClickMessage").Text;
                     break;
 
                 case "Click me":
-                    ButtonElement(xpathClick).Click();
-                    Thread.Sleep(1000);
+                    ScrollDown(200);
+                    ClickMeButton.Click();
                     resultMessage = ButtonSectionMessage("dynamicClickMessage").Text;
                     break;
             }
 
             return resultMessage;
         }
+
+
 
     }
 }

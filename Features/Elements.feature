@@ -11,7 +11,7 @@ Scenario: Verifying Text Box section
 	When User enters the following data in Text Box fields
 		| name         | email                | address1                      | address2          |
 		| Viktor Gusev | karage1625@bayxs.com | Lesi 22, Kiev, 34433, Ukraine | The same as above |
-	And User clicks Submit button
+	And Submit button is clicked
 	Then User verifies the following data is displayed in Table
 		| name              | email                      | address1                                       | address2                              |
 		| Name:Viktor Gusev | Email:karage1625@bayxs.com | Current Address :Lesi 22, Kiev, 34433, Ukraine | Permananet Address :The same as above |
@@ -45,7 +45,7 @@ Scenario: Delete second row from Web Tables section and verify Compliance are no
 Scenario Outline: Clicking buttons and verifying messages
 	Given User clicks Buttons
 	When User clicks <buttonName> button
-	Then "<text>" should be displayed
+	Then <text> should be displayed
 Examples:
 	| buttonName      | text                          |
 	| Double click me | You have done a double click  |

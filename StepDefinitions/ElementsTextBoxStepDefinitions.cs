@@ -44,12 +44,12 @@ namespace SpecFlowProject1.StepDefinitions
                         .EnterPermanentAddress(row["address2"]);
 
         }
-
-        [When(@"User clicks Submit button")]
-        public void WhenUserClicksSubmitButton()
+        [When(@"Submit button is clicked")]
+        public void WhenSubmitButtonIsClicked()
         {
             _elementsPage.ClickSubmitButton();
         }
+
 
         [Then(@"User verifies the following data is displayed in Table")]
         public void ThenUserVerifiesTheFollowingDataIsDisplayedInTable(Table table)

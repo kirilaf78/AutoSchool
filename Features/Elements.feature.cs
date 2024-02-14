@@ -124,7 +124,7 @@ this.FeatureBackground();
  testRunner.When("User enters the following data in Text Box fields", ((string)(null)), table1, "When ");
 #line hidden
 #line 14
- testRunner.And("User clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("Submit button is clicked", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                             "name",
@@ -307,7 +307,7 @@ this.FeatureBackground();
  testRunner.When(string.Format("User clicks {0} button", buttonName), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 48
- testRunner.Then(string.Format("\"{0}\" should be displayed", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+ testRunner.Then(string.Format("{0} should be displayed", text), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             this.ScenarioCleanup();
