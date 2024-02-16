@@ -8,22 +8,10 @@ namespace SpecFlowProject1.Pages
     {
         IWebDriver webDriver;
 
-
         public ElementsPage(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
         }
-
-
-        // Elements category on Main page
-        public IWebElement ElementsOnMain => webDriver.FindElement(By.XPath("//h5[normalize-space()='Elements']"));
-        public void ClickElementsLink()
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
-            js.ExecuteScript("arguments[0].click();", ElementsOnMain);
-        }
-        public const string URL = "https://demoqa.com/";
-
 
         // parametrize elements such as Text Box, Check Box, Web Tables ...
 
@@ -36,16 +24,13 @@ namespace SpecFlowProject1.Pages
         }
 
 
-
         // TexBox section
         public string textBoxSection = "Text Box";
 
         public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
-
         public IWebElement GetFieldByName(string fieldName) => webDriver.FindElement(By.XPath($"//input[@id='{fieldName}']"));
-
 
         public IWebElement GetTextAreaByName(string textAreaName) => webDriver.FindElement(By.XPath($"//textarea[@id='{textAreaName}']"));
 
@@ -64,9 +49,6 @@ namespace SpecFlowProject1.Pages
         public int folderDocumentsNumber = 3;
         public int folderWorkSpaceNumber = 4;
 
-
-
-
         // parametrize toggle elements to expand the folders
         public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
 
@@ -83,7 +65,6 @@ namespace SpecFlowProject1.Pages
         string salaryValue0 = "2000";
         string salaryValue1 = "10000";
         string salaryValue2 = "12000";
-
 
         // parametrize salary elements
 
@@ -103,12 +84,6 @@ namespace SpecFlowProject1.Pages
         public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
 
         // TexBox methods
-        public void OpenUrl()
-        {
-            webDriver.Navigate().GoToUrl(URL);
-            webDriver.Manage().Window.Maximize();
-
-        }
         public void ClickConsent()
         {
             Consent.Click();
@@ -178,8 +153,6 @@ namespace SpecFlowProject1.Pages
             return GetResutlFieldByName(permanentAddress).Text;
         }
 
-
-
         // CheckBox methods
 
         public void ClickCheckBox(string checkBoxName)
@@ -192,7 +165,6 @@ namespace SpecFlowProject1.Pages
             GetToggleElement(toggleNumber).Click();
 
         }
-
 
         public void ClickToggleOfTheFolderDownloads()
         {
@@ -221,12 +193,10 @@ namespace SpecFlowProject1.Pages
             }
         }
 
-
         public string GetActualOutput()
         {
             return ResultingMessage.Text.Replace("\r\n", " ");
         }
-
 
         // Web Tables methods
         public void ClickSalaryColumn()
@@ -240,7 +210,6 @@ namespace SpecFlowProject1.Pages
             DeleteIcon.Click();
 
         }
-
         public List<int> GetSalaryValues()
         {
             List<int> salaryValues = new List<int>();
@@ -279,7 +248,7 @@ namespace SpecFlowProject1.Pages
                     break;
 
                 case "Right click me":
-                    ScrollDown(500);
+                    ScrollDown(300);
                     Thread.Sleep(1000);
                     action.ContextClick(ButtonElement(xpathRight)).Build().Perform();
                     resultMessage = ButtonSectionMessage("rightClickMessage").Text;
@@ -294,8 +263,6 @@ namespace SpecFlowProject1.Pages
 
             return resultMessage;
         }
-
-
 
     }
 }

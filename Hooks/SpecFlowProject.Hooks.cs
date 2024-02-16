@@ -17,8 +17,14 @@ namespace SpecFlowProject1.Hooks
 
             var elementsPage = new Pages.ElementsPage(_webDriver);
 
-            ScenarioContext.Current["WebDriver"] = _webDriver;
             ScenarioContext.Current["ElementsPage"] = elementsPage;
+
+            var commonPage = new Pages.CommonPage(_webDriver);
+
+            ScenarioContext.Current["WebDriver"] = _webDriver;
+            ScenarioContext.Current["CommonPage"] = commonPage;
+
+
         }
 
         [AfterScenario]

@@ -7,6 +7,7 @@ namespace SpecFlowProject1.StepDefinitions
     public class ElementsTextBoxStepDefinitions
     {
         ElementsPage _elementsPage;
+        CommonPage _commonPage;
 
 
 
@@ -14,21 +15,21 @@ namespace SpecFlowProject1.StepDefinitions
         public void WhenUserEntersURL()
 
         {
-            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-            _elementsPage.OpenUrl();
+            _commonPage = (CommonPage)ScenarioContext.Current["CommonPage"];
+            _commonPage.OpenUrl();
         }
 
         [Given(@"User clicks Elements icon")]
         public void ThenUserClicksElementsIcon()
         {
-            _elementsPage.ClickElementsLink();
+            _commonPage.ClickTitlesLink(_commonPage.elementsTitle);
         }
 
 
         [Given(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            // Thread.Sleep(1000);
+            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
             _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.textBoxSection));
         }
