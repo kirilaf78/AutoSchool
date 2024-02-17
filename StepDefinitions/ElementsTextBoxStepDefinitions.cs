@@ -7,31 +7,28 @@ namespace SpecFlowProject1.StepDefinitions
     public class ElementsTextBoxStepDefinitions
     {
         ElementsPage _elementsPage;
-        CommonPage _commonPage;
-
-
 
         [Given(@"User enters URL")]
         public void WhenUserEntersURL()
 
         {
-            _commonPage = (CommonPage)ScenarioContext.Current["CommonPage"];
-            _commonPage.OpenUrl();
+            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
+
+            _elementsPage.OpenUrl();
         }
 
         [Given(@"User clicks Elements icon")]
         public void ThenUserClicksElementsIcon()
         {
-            _commonPage.ClickTitlesLink(_commonPage.elementsTitle);
+            _elementsPage.ClickTitlesLink(_elementsPage.elementsTitle);
         }
 
 
         [Given(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-            _commonPage.ClickConsent();
-            _commonPage.ClickSection(_commonPage.SectionElements(_elementsPage.textBoxSection));
+            _elementsPage.ClickConsent();
+            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.textBoxSection));
         }
 
         [When(@"User enters the following data in Text Box fields")]

@@ -1,16 +1,15 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 
 
 namespace SpecFlowProject1.Pages
 {
-    public class AlertsFrameAndWindowsPage
+    public class AlertsFrameAndWindowsPage : CommonPage
     {
         IWebDriver webDriver;
 
 
-        public AlertsFrameAndWindowsPage(IWebDriver webDriver)
+        public AlertsFrameAndWindowsPage(IWebDriver webDriver) : base(webDriver)
         {
             this.webDriver = webDriver;
         }

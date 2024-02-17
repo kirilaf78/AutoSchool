@@ -7,17 +7,15 @@ namespace SpecFlowProject1.StepDefinitions
     public class ElementsButtonsStepDefinitions
     {
         ElementsPage _elementsPage;
-        CommonPage _commonPage;
 
 
         [Given(@"User clicks Buttons")]
         public void GivenUserClicksButtons()
         {
-            _commonPage = (CommonPage)ScenarioContext.Current["CommonPage"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
             _elementsPage.ScrollDown(200);
-            _commonPage.ClickConsent();
-            _commonPage.ClickSection(_commonPage.SectionElements(_elementsPage.buttonsSection));
+            _elementsPage.ClickConsent();
+            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.buttonsSection));
 
 
         }

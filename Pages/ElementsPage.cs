@@ -4,11 +4,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace SpecFlowProject1.Pages
 {
-    public class ElementsPage
+    public class ElementsPage: CommonPage
     {
         IWebDriver webDriver;
 
-        public ElementsPage(IWebDriver webDriver)
+        public ElementsPage(IWebDriver webDriver): base(webDriver) 
         {
             this.webDriver = webDriver;
         }
