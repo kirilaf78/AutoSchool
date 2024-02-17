@@ -7,13 +7,16 @@ namespace SpecFlowProject1.StepDefinitions
     public class ElementsWebTables_1_StepDefinitions
     {
         private ElementsPage _elementsPage;
+        CommonPage _commonPage;
+
 
         [Given(@"User navigates to Web Tables section")]
         public void GivenUserNavigatesToWebTablesSection()
         {
+            _commonPage = (CommonPage)ScenarioContext.Current["CommonPage"];
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.webTablesSection));
+            _commonPage.ClickConsent();
+            _commonPage.ClickSection(_commonPage.SectionElements(_elementsPage.webTablesSection));
         }
 
 

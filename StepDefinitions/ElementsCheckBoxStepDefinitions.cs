@@ -6,17 +6,21 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsCheckBoxStepDefinitions
     {
-        private ElementsPage _elementsPage;
+        ElementsPage _elementsPage;
+        CommonPage _commonPage;
+
 
 
         [Given(@"User clicks Check Box title")]
         public void WhenUserClicksCheckBoxTitle()
 
         {
+            _commonPage = (CommonPage)ScenarioContext.Current["CommonPage"];
+
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
 
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.checkBoxSection));
+            _commonPage.ClickConsent();
+            _commonPage.ClickSection(_commonPage.SectionElements(_elementsPage.checkBoxSection));
 
         }
 

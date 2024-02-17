@@ -13,21 +13,10 @@ namespace SpecFlowProject1.Pages
             this.webDriver = webDriver;
         }
 
-        // parametrize elements such as Text Box, Check Box, Web Tables ...
-
-        public IWebElement SectionElements(string section) => webDriver.FindElement(By.XPath($"//span[normalize-space()='{section}']"));
-
-        // to click sections  such as Text Box, Check Box.... on Elements page
-        public void ClickSection(IWebElement element)
-        {
-            element.Click();
-        }
-
-
         // TexBox section
         public string textBoxSection = "Text Box";
 
-        public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
+        // public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
         public IWebElement GetFieldByName(string fieldName) => webDriver.FindElement(By.XPath($"//input[@id='{fieldName}']"));
@@ -84,11 +73,6 @@ namespace SpecFlowProject1.Pages
         public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
 
         // TexBox methods
-        public void ClickConsent()
-        {
-            Consent.Click();
-        }
-
         public ElementsPage EnterName(string name)
         {
             string fieldName = "userName";

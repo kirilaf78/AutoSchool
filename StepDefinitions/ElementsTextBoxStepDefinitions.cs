@@ -30,8 +30,8 @@ namespace SpecFlowProject1.StepDefinitions
         public void WhenUserClicksTextBoxTitle()
         {
             _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.textBoxSection));
+            _commonPage.ClickConsent();
+            _commonPage.ClickSection(_commonPage.SectionElements(_elementsPage.textBoxSection));
         }
 
         [When(@"User enters the following data in Text Box fields")]
