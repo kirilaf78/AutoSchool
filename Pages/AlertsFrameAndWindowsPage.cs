@@ -41,5 +41,13 @@ namespace SpecFlowProject1.Pages
             webDriver.SwitchTo().Window(webDriver.WindowHandles[1]);
 
         }
+
+        public void FocusOnNewWindow()
+        {
+            string newWindowHandle = webDriver.WindowHandles[^1]; // Get the handle of the last opened window
+            webDriver.SwitchTo().Window(newWindowHandle);
+
+
+        }
     }
 }
