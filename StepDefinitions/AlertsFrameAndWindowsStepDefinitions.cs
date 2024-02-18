@@ -1,5 +1,5 @@
 using NUnit.Framework;
-using OpenQA.Selenium;
+using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.StepDefinitions
@@ -7,13 +7,21 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class AlertsFrameAndWindowsStepDefinitions
     {
+        private DriverHelper _webDriver;
         AlertsFrameAndWindowsPage _alertsFrameAndWindowsPage;
+
+
+        public AlertsFrameAndWindowsStepDefinitions(DriverHelper webDriver)
+        {
+            _webDriver = webDriver;
+            _alertsFrameAndWindowsPage = new AlertsFrameAndWindowsPage(_webDriver.Driver);
+
+        }
 
 
         [Given(@"User clicks Alerts, Frame and Windows icon")]
         public void GivenUserClicksAllertsFrameAndWindowsIcon()
         {
-            _alertsFrameAndWindowsPage = (AlertsFrameAndWindowsPage)ScenarioContext.Current["AlertsFrameAndWindowsPage"];
             _alertsFrameAndWindowsPage.OpenUrl();
             _alertsFrameAndWindowsPage.ClickTitlesLink(_alertsFrameAndWindowsPage.alertsFrameAndWindowsTitle);
             _alertsFrameAndWindowsPage.ClickConsent();

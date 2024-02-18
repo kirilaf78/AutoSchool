@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.StepDefinitions
@@ -6,12 +7,19 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsWebTables_1_StepDefinitions
     {
-        private ElementsPage _elementsPage;
+        private DriverHelper _webDriver;
+
+        ElementsPage _elementsPage;
+
+        public ElementsWebTables_1_StepDefinitions(DriverHelper webDriver)
+        {
+            _webDriver = webDriver;
+            _elementsPage = new ElementsPage(_webDriver.Driver);
+        }
 
         [Given(@"User navigates to Web Tables section")]
         public void GivenUserNavigatesToWebTablesSection()
         {
-            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
             _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.webTablesSection));
         }

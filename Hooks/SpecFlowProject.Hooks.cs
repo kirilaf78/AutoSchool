@@ -1,37 +1,30 @@
-﻿using OpenQA.Selenium;
+﻿using OpenQA.Selenium.Chrome;
 using SpecFlowProject1.Drivers;
-using TechTalk.SpecFlow;
-using System;
-using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.Hooks
 {
     [Binding]
     public class Hooks
     {
-        private IWebDriver _webDriver;
+        private DriverHelper _webDriver;
+        public Hooks(DriverHelper webDriver)
+        {
+            _webDriver = webDriver;
+        }
 
         [BeforeScenario]
         public void BeforeScenario()
         {
-            _webDriver = WebDriverFactory.CreateWebDriver();
-
-            var elementsPage = new Pages.ElementsPage(_webDriver);
-            var commonPage = new Pages.CommonPage(_webDriver);
-            var alertsFrameAndWindowsPage = new Pages.AlertsFrameAndWindowsPage(_webDriver);
-
-            ScenarioContext.Current["WebDriver"] = _webDriver;
-            ScenarioContext.Current["ElementsPage"] = elementsPage;
-            ScenarioContext.Current["CommonPage"] = commonPage;
-            ScenarioContext.Current["AlertsFrameAndWindowsPage"] = alertsFrameAndWindowsPage;
-
-
+            ChromeOptions option = new ChromeOptions();
+            option.AddArguments("start-maximized");
+            // option.AddArguments("--headless");
+            _webDriver.Driver = new ChromeDriver(option);
         }
 
         [AfterScenario]
         public void AfterScenario()
         {
-            _webDriver?.Quit();
+            _webDriver.Driver.Quit();
         }
     }
 }

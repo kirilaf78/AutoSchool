@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.StepDefinitions
@@ -6,13 +7,19 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsButtonsStepDefinitions
     {
+        private DriverHelper _webDriver;
+
         ElementsPage _elementsPage;
 
+        public ElementsButtonsStepDefinitions(DriverHelper webDriver)
+        {
+            _webDriver = webDriver;
+            _elementsPage = new ElementsPage(_webDriver.Driver);
+        }
 
         [Given(@"User clicks Buttons")]
         public void GivenUserClicksButtons()
         {
-            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
             _elementsPage.ScrollDown(200);
             _elementsPage.ClickConsent();
             _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.buttonsSection));

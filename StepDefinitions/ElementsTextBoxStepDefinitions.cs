@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 
 namespace SpecFlowProject1.StepDefinitions
@@ -6,14 +7,20 @@ namespace SpecFlowProject1.StepDefinitions
     [Binding]
     public class ElementsTextBoxStepDefinitions
     {
+        private DriverHelper _webDriver;
+
         ElementsPage _elementsPage;
+
+        public ElementsTextBoxStepDefinitions(DriverHelper webDriver)
+        {
+            _webDriver = webDriver;
+            _elementsPage = new ElementsPage(_webDriver.Driver);
+        }
 
         [Given(@"User enters URL")]
         public void WhenUserEntersURL()
 
         {
-            _elementsPage = (ElementsPage)ScenarioContext.Current["ElementsPage"];
-
             _elementsPage.OpenUrl();
         }
 
