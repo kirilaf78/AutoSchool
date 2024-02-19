@@ -15,6 +15,7 @@ namespace SpecFlowProject1.Pages
         public IWebElement TitlesOnMain(string title) => webDriver.FindElement(By.XPath($"//h5[normalize-space()='{title}']"));
         public string elementsTitle = "Elements";
         public string alertsFrameAndWindowsTitle = "Alerts, Frame & Windows";
+        public string widgetsTitle = "Widgets";
         public void ClickTitlesLink(string title)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
