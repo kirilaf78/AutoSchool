@@ -30,11 +30,17 @@ namespace SpecFlowProject1.StepDefinitions
         [Given(@"User navigates to Auto Complete section")]
         public void GivenUserNavigatesToAutoCompleteSection()
         {
+            _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.autoCompleteSection));
+
         }
 
-        [When(@"User enters '([^']*)' in the field ""([^""]*)""")]
-        public void WhenUserEntersInTheField(string g, string p1)
+        [When(@"User enters '(.*)' in the Type multiple color names field")]
+        public void WhenUserEntersInTheTypeMultipleColorNamesField(string g)
         {
+            Thread.Sleep(3000);
+            _widgetsPage.ScrollDown(300);
+            _widgetsPage.TypeLetter(_widgetsPage.multiColorInput, g);
+            Thread.Sleep(5000);
         }
 
         [Then(@"There are three suggestions displayed with each containing the letter '([^']*)'")]

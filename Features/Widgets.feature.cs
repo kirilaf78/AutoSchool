@@ -109,7 +109,7 @@ this.FeatureBackground();
     testRunner.Given("User navigates to Auto Complete section", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 9
-    testRunner.When("User enters \'g\' in the field \"Type multiple color names\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+    testRunner.When("User enters \'g\' in the Type multiple color names field", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 10
     testRunner.Then("There are three suggestions displayed with each containing the letter \'g\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");

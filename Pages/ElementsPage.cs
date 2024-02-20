@@ -162,11 +162,6 @@ namespace SpecFlowProject1.Pages
 
         }
 
-        public void ScrollDown(int pixels)
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
-            js.ExecuteScript($"window.scrollBy(0, {pixels});");
-        }
         public void ClickAllInOfficeFolder()
         {
             var checkboxElements = GetCheckboxElements();

@@ -6,7 +6,7 @@ Background:
 
 Scenario: Verify Auto Complete suggestions after typing 'g'
     Given User navigates to Auto Complete section
-    When User enters 'g' in the field "Type multiple color names"
+    When User enters 'g' in the Type multiple color names field 
     Then There are three suggestions displayed with each containing the letter 'g'
 
 Scenario: Verify remaining colors after adding and removing colors
