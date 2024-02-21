@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 using System;
@@ -37,15 +38,21 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User enters '(.*)' in the Type multiple color names field")]
         public void WhenUserEntersInTheTypeMultipleColorNamesField(string g)
         {
-            Thread.Sleep(3000);
+            // Thread.Sleep(3000);
             _widgetsPage.ScrollDown(300);
             _widgetsPage.TypeLetter(_widgetsPage.multiColorInput, g);
-            Thread.Sleep(5000);
+            // Thread.Sleep(5000);
         }
 
-        [Then(@"There are three suggestions displayed with each containing the letter '([^']*)'")]
+        [Then(@"There are three suggestions displayed with each containing the letter '(.*)'")]
         public void ThenThereAreThreeSuggestionsDisplayedWithEachContainingTheLetter(string g)
         {
+            Assert.Multiple(() =>
+            {
+                Assert.That(_widgetsPage.AutoCompleteOptions.Count, Is.EqualTo(3));
+                Assert.That(_widgetsPage.DoesContainLetter(g), Is.True);
+
+            });
         }
 
         [When(@"User enters the colors: Red, Yellow, Green, Blue, and Purple")]
