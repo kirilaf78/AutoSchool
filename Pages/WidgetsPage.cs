@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SpecFlowProject1.Pages
 {
@@ -7,10 +9,17 @@ namespace SpecFlowProject1.Pages
     {
 
         IWebDriver webDriver;
+        WebDriverWait wait;
+
 
         public string autoCompleteSection = "Auto Complete";
         public string multiColorInput = "autoCompleteMultipleInput";
         public string singleColorInput = "autoCompleteSingleInput";
+        public string progressBarSection = "Progress Bar";
+        public string startStopButton = "startStopButton";
+        public string resetButton = "resetButton";
+        //public string progressBarHundred = "progressbar";
+        //public string progressBarZero = "progressBar";
 
         public WidgetsPage(IWebDriver webDriver) : base(webDriver)
         {
@@ -21,7 +30,8 @@ namespace SpecFlowProject1.Pages
         public IWebElement SingleColorNameInput => webDriver.FindElement(By.XPath("//input[@id='autoCompleteSingleInput']"));
         public IWebElement AutoCompleteElement(string number) => webDriver.FindElement(By.XPath($"//*[@id=\"react-select-2-option-{number}\"]"));
         public ReadOnlyCollection<IWebElement> AutoCompleteOptions => webDriver.FindElements(By.XPath(".//div[contains(@class, 'auto-complete__option')]"));
-
+        public IWebElement Buttons(string buttonName) => webDriver.FindElement(By.XPath($"//button[@id='{buttonName}']"));
+        public IWebElement ProgressBar => webDriver.FindElement(By.XPath($"//div[@id='progressBar']"));
         public List<string> colors = new List<string> { "Red", "Yellow", "Green", "Blue", "Purple" };
 
         //Typing "g" letter
@@ -76,6 +86,15 @@ namespace SpecFlowProject1.Pages
             return remainingColors.Contains("Red") && remainingColors.Contains("Green") && remainingColors.Contains("Blue")
                 && !remainingColors.Contains("Yellow") && !remainingColors.Contains("Purple");
         }
+
+        public void WaitForCompletion(string number)
+        {
+            wait = new WebDriverWait(webDriver, TimeSpan.FromSeconds(10));
+            
+            //Wait for the progress to reach 100%
+            wait.Until(webDriver => GetText(ProgressBar) == number);
+        } 
+
 
     }
 }

@@ -76,31 +76,47 @@ namespace SpecFlowProject1.StepDefinitions
         [Given(@"User navigates to Progress Bar section")]
         public void GivenUserNavigatesToProgressBarSection()
         {
+            _widgetsPage.ScrollDown(200);
+            // Thread.Sleep(5000);
+
+            _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.progressBarSection));
+
         }
 
-        [When(@"User clicks on Start and waits for the progress to reach (.*)%")]
-        public void WhenUserClicksOnStartAndWaitsForTheProgressToReach(int p0)
+        [When(@"User clicks on Start and waits for the progress to reach '(.*)'")]
+        public void WhenUserClicksOnStartAndWaitsForTheProgressToReach(string percent)
         {
+            _widgetsPage.ClickButton(_widgetsPage.Buttons(_widgetsPage.startStopButton));
+            _widgetsPage.WaitForCompletion(percent);
+            Console.WriteLine(_widgetsPage.GetText(_widgetsPage.ProgressBar));
         }
 
-        [Then(@"The button label changes to Reset")]
-        public void ThenTheButtonLabelChangesToReset()
+
+        [Then(@"The button label changes to '(.*)'")]
+        public void ThenTheButtonLabelChangesTo(string reset)
         {
+            Assert.That(_widgetsPage.GetText(_widgetsPage.Buttons(_widgetsPage.resetButton)) == reset);
         }
 
         [Then(@"User clicks on Reset")]
         public void ThenUserClicksOnReset()
         {
+            _widgetsPage.ClickButton(_widgetsPage.Buttons(_widgetsPage.resetButton));
+            Thread.Sleep(3000);
         }
 
-        [Then(@"The button label changes back to Start")]
-        public void ThenTheButtonLabelChangesBackToStart()
+        [Then(@"The button label changes back to '(.*)'")]
+        public void ThenTheButtonLabelChangesBackTo(string start)
         {
+            Assert.That(_widgetsPage.GetText(_widgetsPage.Buttons(_widgetsPage.startStopButton)) == start);
         }
 
-        [Then(@"The progress bar value is reset to (.*)%")]
-        public void ThenTheProgressBarValueIsResetTo(int p0)
+        [Then(@"The progress bar value is reset to '(.*)'")]
+        public void ThenTheProgressBarValueIsResetTo(string percent)
         {
+           //_widgetsPage.WaitForCompletion(percent);
+
+            Assert.That(_widgetsPage.GetText(_widgetsPage.ProgressBar) == percent, $"Actual: {_widgetsPage.GetText(_widgetsPage.ProgressBar)}, expected: {percent}"); 
         }
     }
 }

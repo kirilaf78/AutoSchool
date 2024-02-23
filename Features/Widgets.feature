@@ -17,9 +17,9 @@ Scenario: Verify remaining colors after adding and removing colors
 
 Scenario: Verify Progress Bar functionality
     Given User navigates to Progress Bar section
-    When User clicks on Start and waits for the progress to reach 100%
-    Then The button label changes to Reset
+    When User clicks on Start and waits for the progress to reach '100%'
+    Then The button label changes to 'Reset'
     And User clicks on Reset
-    Then The button label changes back to Start
-    And The progress bar value is reset to 0%
+    Then The button label changes back to 'Start'
+    And The progress bar value is reset to '0%'
 

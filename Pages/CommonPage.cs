@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
 
 namespace SpecFlowProject1.Pages
 {
@@ -50,6 +51,16 @@ namespace SpecFlowProject1.Pages
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
             js.ExecuteScript($"window.scrollBy(0, {pixels});");
+        }
+
+        public void ClickButton(IWebElement button)
+        {
+            button.Click();
+        }
+
+        public string GetText(IWebElement element)
+        {
+           return element.Text;
         }
 
 
