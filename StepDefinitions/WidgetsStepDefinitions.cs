@@ -38,10 +38,8 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User enters '(.*)' in the Type multiple color names field")]
         public void WhenUserEntersInTheTypeMultipleColorNamesField(string g)
         {
-            // Thread.Sleep(3000);
             _widgetsPage.ScrollDown(300);
             _widgetsPage.TypeLetter(_widgetsPage.multiColorInput, g);
-            // Thread.Sleep(5000);
         }
 
         [Then(@"There are three suggestions displayed with each containing the letter '(.*)'")]
@@ -58,16 +56,21 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User enters the colors: Red, Yellow, Green, Blue, and Purple")]
         public void WhenUserEntersTheColorsRedYellowGreenBlueAndPurple()
         {
+            _widgetsPage.EnterColor(_widgetsPage.colors);
+
+
         }
 
         [When(@"User removes Yellow and Purple")]
         public void WhenUserRemovesYellowAndPurple()
         {
+            _widgetsPage.RemoveColors();
         }
 
         [Then(@"Only Red, Green, and Blue are displayed in the field")]
         public void ThenOnlyRedGreenAndBlueAreDisplayedInTheField()
         {
+            Assert.That(_widgetsPage.VerifyRemainingColors(), Is.True);
         }
 
         [Given(@"User navigates to Progress Bar section")]
