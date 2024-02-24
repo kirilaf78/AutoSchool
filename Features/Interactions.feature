@@ -1,8 +1,8 @@
 ﻿Feature: Interactions
 
 Background:
-	Given User enters URL
-	And User clicks Widgets icon
+	Given User types URL
+	And Widgets icon is clicked
 
 Scenario: Verifying value of selected squares
     Given User navigates to Selectable section

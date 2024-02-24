@@ -21,8 +21,8 @@ namespace SpecFlowProject1.StepDefinitions
         public void WhenUserClicksCheckBoxTitle()
 
         {
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.checkBoxSection));
+            _elementsPage.ClickElement(_elementsPage.Consent);
+            _elementsPage.ClickElement(_elementsPage.SectionElements(_elementsPage.checkBoxSection));
 
         }
 

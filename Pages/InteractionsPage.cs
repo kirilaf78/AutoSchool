@@ -9,14 +9,18 @@ using System.Threading.Tasks;
 namespace SpecFlowProject1.Pages
 {
     public class InteractionsPage : CommonPage
+    {
+
+        IWebDriver webDriver;
+
+        public InteractionsPage(IWebDriver webDriver) : base(webDriver)
         {
-
-            IWebDriver webDriver;
-
-            public InteractionsPage(IWebDriver webDriver) : base(webDriver)
-            {
-                this.webDriver = webDriver;
-            }
-
+            this.webDriver = webDriver;
         }
+
+        public string selectableSection = "Selectable";
+        public IWebElement gridTab => webDriver.FindElement(By.XPath("//a[@id='demo-tab-grid']"));
+
+
     }
+}

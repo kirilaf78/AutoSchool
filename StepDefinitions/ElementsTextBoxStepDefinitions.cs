@@ -34,8 +34,8 @@ namespace SpecFlowProject1.StepDefinitions
         [Given(@"User clicks Text Box title")]
         public void WhenUserClicksTextBoxTitle()
         {
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.textBoxSection));
+            _elementsPage.ClickElement(_elementsPage.Consent);
+            _elementsPage.ClickElement(_elementsPage.SectionElements(_elementsPage.textBoxSection));
         }
 
         [When(@"User enters the following data in Text Box fields")]

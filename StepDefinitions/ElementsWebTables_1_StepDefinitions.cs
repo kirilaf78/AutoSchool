@@ -20,8 +20,8 @@ namespace SpecFlowProject1.StepDefinitions
         [Given(@"User navigates to Web Tables section")]
         public void GivenUserNavigatesToWebTablesSection()
         {
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.webTablesSection));
+            _elementsPage.ClickElement(_elementsPage.Consent);
+            _elementsPage.ClickElement(_elementsPage.SectionElements(_elementsPage.webTablesSection));
         }
 
 

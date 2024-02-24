@@ -24,14 +24,14 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _alertsFrameAndWindowsPage.OpenUrl();
             _alertsFrameAndWindowsPage.ClickTitlesLink(_alertsFrameAndWindowsPage.alertsFrameAndWindowsTitle);
-            _alertsFrameAndWindowsPage.ClickConsent();
+            _alertsFrameAndWindowsPage.ClickElement(_alertsFrameAndWindowsPage.Consent);
 
         }
 
         [Given(@"User click Browser Windows")]
         public void GivenUserClickBrowserWindows()
         {
-            _alertsFrameAndWindowsPage.ClickSection(_alertsFrameAndWindowsPage.SectionElements(_alertsFrameAndWindowsPage.browserWindowsSection));
+            _alertsFrameAndWindowsPage.ClickElement(_alertsFrameAndWindowsPage.SectionElements(_alertsFrameAndWindowsPage.browserWindowsSection));
         }
 
         [When(@"User click New Tab button")]
@@ -46,7 +46,7 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _alertsFrameAndWindowsPage.FocusOnNewTab();
 
-            Assert.That(expectedText, Is.EqualTo(_alertsFrameAndWindowsPage.GetText()), $"Expected: {expectedText}, Actual: {_alertsFrameAndWindowsPage.GetText()}");
+            Assert.That(expectedText, Is.EqualTo(_alertsFrameAndWindowsPage.GetText(_alertsFrameAndWindowsPage.H_OneTitle)), $"Expected: {expectedText}, Actual: {_alertsFrameAndWindowsPage.GetText(_alertsFrameAndWindowsPage.H_OneTitle)}");
 
         }
 
@@ -54,7 +54,7 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenBrowserWindowsWasClicked()
         {
 
-            _alertsFrameAndWindowsPage.ClickSection(_alertsFrameAndWindowsPage.SectionElements(_alertsFrameAndWindowsPage.browserWindowsSection));
+            _alertsFrameAndWindowsPage.ClickElement(_alertsFrameAndWindowsPage.SectionElements(_alertsFrameAndWindowsPage.browserWindowsSection));
 
         }
 
@@ -70,7 +70,7 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _alertsFrameAndWindowsPage.FocusOnNewWindow();
 
-            Assert.That(expectedText, Is.EqualTo(_alertsFrameAndWindowsPage.GetText()), $"Expected: {expectedText}, Actual: {_alertsFrameAndWindowsPage.GetText()}");
+            Assert.That(expectedText, Is.EqualTo(_alertsFrameAndWindowsPage.GetText(_alertsFrameAndWindowsPage.H_OneTitle)), $"Expected: {expectedText}, Actual: {_alertsFrameAndWindowsPage.GetText(_alertsFrameAndWindowsPage.H_OneTitle)}");
         }
     }
 }

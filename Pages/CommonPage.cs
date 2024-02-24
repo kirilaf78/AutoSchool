@@ -17,6 +17,7 @@ namespace SpecFlowProject1.Pages
         public string elementsTitle = "Elements";
         public string alertsFrameAndWindowsTitle = "Alerts, Frame & Windows";
         public string widgetsTitle = "Widgets";
+        public string interactionsTitle = "Interactions";
         public void ClickTitlesLink(string title)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
@@ -35,17 +36,8 @@ namespace SpecFlowProject1.Pages
 
         public IWebElement SectionElements(string section) => webDriver.FindElement(By.XPath($"//span[normalize-space()='{section}']"));
 
-        public void ClickSection(IWebElement element)
-        {
-            element.Click();
-        }
-
-        // Click "Consent" button
+        // "Consent" button
         public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
-        public void ClickConsent()
-        {
-            Consent.Click();
-        }
 
         public void ScrollDown(int pixels)
         {
@@ -53,9 +45,9 @@ namespace SpecFlowProject1.Pages
             js.ExecuteScript($"window.scrollBy(0, {pixels});");
         }
 
-        public void ClickButton(IWebElement button)
+        public void ClickElement(IWebElement element)
         {
-            button.Click();
+            element.Click();
         }
 
         public string GetText(IWebElement element)

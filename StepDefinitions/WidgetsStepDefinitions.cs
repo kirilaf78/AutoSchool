@@ -22,13 +22,13 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _widgetsPage.OpenUrl();
             _widgetsPage.ClickTitlesLink(_widgetsPage.widgetsTitle);
-            _widgetsPage.ClickConsent();
+            _widgetsPage.ClickElement(_widgetsPage.Consent);
         }
 
         [Given(@"User navigates to Auto Complete section")]
         public void GivenUserNavigatesToAutoCompleteSection()
         {
-            _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.autoCompleteSection));
+            _widgetsPage.ClickElement(_widgetsPage.SectionElements(_widgetsPage.autoCompleteSection));
         }
 
         [When(@"User enters '(.*)' in the Type multiple color names field")]
@@ -71,13 +71,13 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenUserNavigatesToProgressBarSection()
         {
             _widgetsPage.ScrollDown(200);
-            _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.progressBarSection));
+            _widgetsPage.ClickElement(_widgetsPage.SectionElements(_widgetsPage.progressBarSection));
         }
 
         [When(@"User clicks on Start and waits for the progress to reach '(.*)'")]
         public void WhenUserClicksOnStartAndWaitsForTheProgressToReach(string percent)
         {
-            _widgetsPage.ClickButton(_widgetsPage.Buttons(_widgetsPage.startStopButton));
+            _widgetsPage.ClickElement(_widgetsPage.Buttons(_widgetsPage.startStopButton));
             _widgetsPage.WaitForCompletion(percent);
             Console.WriteLine(_widgetsPage.GetText(_widgetsPage.ProgressBar));
         }
@@ -92,7 +92,7 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"User clicks on Reset")]
         public void ThenUserClicksOnReset()
         {
-            _widgetsPage.ClickButton(_widgetsPage.Buttons(_widgetsPage.resetButton));
+            _widgetsPage.ClickElement(_widgetsPage.Buttons(_widgetsPage.resetButton));
         }
 
         [Then(@"The button label changes back to '(.*)'")]

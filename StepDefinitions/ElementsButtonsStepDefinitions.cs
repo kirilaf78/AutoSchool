@@ -21,8 +21,8 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenUserClicksButtons()
         {
             _elementsPage.ScrollDown(200);
-            _elementsPage.ClickConsent();
-            _elementsPage.ClickSection(_elementsPage.SectionElements(_elementsPage.buttonsSection));
+            _elementsPage.ClickElement(_elementsPage.Consent);
+            _elementsPage.ClickElement(_elementsPage.SectionElements(_elementsPage.buttonsSection));
 
 
         }

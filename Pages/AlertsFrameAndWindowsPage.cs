@@ -25,11 +25,6 @@ namespace SpecFlowProject1.Pages
             AlertsFrameAndWindowsButtons(buttonName).Click();
         }
 
-        public string GetText()
-        {
-            return H_OneTitle.Text;
-        }
-
         public void FocusOnNewTab()
         {
             // Wait for the new tab to open
