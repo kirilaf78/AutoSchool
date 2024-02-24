@@ -21,5 +21,5 @@ Scenario: Verify Progress Bar functionality
     Then The button label changes to 'Reset'
     And User clicks on Reset
     Then The button label changes back to 'Start'
-    And The progress bar value is reset to '0%'
+    And The progress bar value is reset to '0'%
 

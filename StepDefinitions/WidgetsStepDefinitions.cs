@@ -1,8 +1,6 @@
 using NUnit.Framework;
 using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
-using System;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.StepDefinitions
 {
@@ -17,7 +15,6 @@ namespace SpecFlowProject1.StepDefinitions
         {
             _webDriver = webDriver;
             _widgetsPage = new WidgetsPage(_webDriver.Driver);
-
         }
 
         [Given(@"User clicks Widgets icon")]
@@ -32,7 +29,6 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenUserNavigatesToAutoCompleteSection()
         {
             _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.autoCompleteSection));
-
         }
 
         [When(@"User enters '(.*)' in the Type multiple color names field")]
@@ -57,8 +53,6 @@ namespace SpecFlowProject1.StepDefinitions
         public void WhenUserEntersTheColorsRedYellowGreenBlueAndPurple()
         {
             _widgetsPage.EnterColor(_widgetsPage.colors);
-
-
         }
 
         [When(@"User removes Yellow and Purple")]
@@ -77,10 +71,7 @@ namespace SpecFlowProject1.StepDefinitions
         public void GivenUserNavigatesToProgressBarSection()
         {
             _widgetsPage.ScrollDown(200);
-            // Thread.Sleep(5000);
-
             _widgetsPage.ClickSection(_widgetsPage.SectionElements(_widgetsPage.progressBarSection));
-
         }
 
         [When(@"User clicks on Start and waits for the progress to reach '(.*)'")]
@@ -102,7 +93,6 @@ namespace SpecFlowProject1.StepDefinitions
         public void ThenUserClicksOnReset()
         {
             _widgetsPage.ClickButton(_widgetsPage.Buttons(_widgetsPage.resetButton));
-            Thread.Sleep(3000);
         }
 
         [Then(@"The button label changes back to '(.*)'")]
@@ -111,12 +101,10 @@ namespace SpecFlowProject1.StepDefinitions
             Assert.That(_widgetsPage.GetText(_widgetsPage.Buttons(_widgetsPage.startStopButton)) == start);
         }
 
-        [Then(@"The progress bar value is reset to '(.*)'")]
+        [Then(@"The progress bar value is reset to '(.*)'%")]
         public void ThenTheProgressBarValueIsResetTo(string percent)
         {
-           //_widgetsPage.WaitForCompletion(percent);
-
-            Assert.That(_widgetsPage.GetText(_widgetsPage.ProgressBar) == percent, $"Actual: {_widgetsPage.GetText(_widgetsPage.ProgressBar)}, expected: {percent}"); 
+            Assert.That(_widgetsPage.ProgressBar.GetAttribute("aria-valuenow") == percent);
         }
     }
 }

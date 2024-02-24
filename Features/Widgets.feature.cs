@@ -190,7 +190,7 @@ this.FeatureBackground();
     testRunner.Then("The button label changes back to \'Start\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 24
-    testRunner.And("The progress bar value is reset to \'0%\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+    testRunner.And("The progress bar value is reset to \'0\'%", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             }
             this.ScenarioCleanup();
