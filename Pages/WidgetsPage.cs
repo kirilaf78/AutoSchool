@@ -9,7 +9,10 @@ namespace SpecFlowProject1.Pages
 
         IWebDriver webDriver;
         WebDriverWait wait;
-
+        public WidgetsPage(IWebDriver webDriver) : base(webDriver)
+        {
+            this.webDriver = webDriver;
+        }
 
         public string autoCompleteSection = "Auto Complete";
         public string multiColorInput = "autoCompleteMultipleInput";
@@ -17,11 +20,6 @@ namespace SpecFlowProject1.Pages
         public string progressBarSection = "Progress Bar";
         public string startStopButton = "startStopButton";
         public string resetButton = "resetButton";
-
-        public WidgetsPage(IWebDriver webDriver) : base(webDriver)
-        {
-            this.webDriver = webDriver;
-        }
 
         public IWebElement ColorNamesInputs(string input) => webDriver.FindElement(By.XPath($"//input[@id='{input}']"));
         public IWebElement SingleColorNameInput => webDriver.FindElement(By.XPath("//input[@id='autoCompleteSingleInput']"));
