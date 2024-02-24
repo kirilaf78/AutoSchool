@@ -13,7 +13,7 @@ namespace SpecFlowProject1.Pages
         {
             this.webDriver = webDriver;
         }
-
+        public string widgetsTitle = "Widgets";
         public string autoCompleteSection = "Auto Complete";
         public string multiColorInput = "autoCompleteMultipleInput";
         public string singleColorInput = "autoCompleteSingleInput";

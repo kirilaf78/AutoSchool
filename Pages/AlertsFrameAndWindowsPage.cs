@@ -13,7 +13,7 @@ namespace SpecFlowProject1.Pages
         {
             this.webDriver = webDriver;
         }
-
+        public string alertsFrameAndWindowsTitle = "Alerts, Frame & Windows";
         public string browserWindowsSection = "Browser Windows";
         public string tabButton = "tabButton";
         public string windowButton = "windowButton";

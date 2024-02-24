@@ -7,30 +7,13 @@ namespace SpecFlowProject1.Pages
     {
         IWebDriver webDriver;
 
-
         public CommonPage(IWebDriver webDriver)
         {
             this.webDriver = webDriver;
         }
-
-        public IWebElement TitlesOnMain(string title) => webDriver.FindElement(By.XPath($"//h5[normalize-space()='{title}']"));
-        public string elementsTitle = "Elements";
-        public string alertsFrameAndWindowsTitle = "Alerts, Frame & Windows";
-        public string widgetsTitle = "Widgets";
-        public string interactionsTitle = "Interactions";
-        public void ClickTitlesLink(string title)
-        {
-            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
-            js.ExecuteScript("arguments[0].click();", TitlesOnMain(title));
-        }
         public const string URL = "https://demoqa.com/";
 
-        public void OpenUrl()
-        {
-            webDriver.Navigate().GoToUrl(URL);
-            webDriver.Manage().Window.Maximize();
-
-        }
+        public IWebElement TitlesOnMain(string title) => webDriver.FindElement(By.XPath($"//h5[normalize-space()='{title}']"));
 
         // parametrize elements such as Text Box, Check Box, Web Tables ...
 
@@ -38,7 +21,18 @@ namespace SpecFlowProject1.Pages
 
         // "Consent" button
         public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
+        public void ClickTitlesLink(string title)
+        {
+            IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
+            js.ExecuteScript("arguments[0].click();", TitlesOnMain(title));
+        }
 
+        public void OpenUrl()
+        {
+            webDriver.Navigate().GoToUrl(URL);
+            webDriver.Manage().Window.Maximize();
+
+        }
         public void ScrollDown(int pixels)
         {
             IJavaScriptExecutor js = (IJavaScriptExecutor)webDriver;
@@ -52,7 +46,7 @@ namespace SpecFlowProject1.Pages
 
         public string GetText(IWebElement element)
         {
-           return element.Text;
+            return element.Text;
         }
 
 

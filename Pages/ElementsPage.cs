@@ -12,6 +12,7 @@ namespace SpecFlowProject1.Pages
         {
             this.webDriver = webDriver;
         }
+        public string elementsTitle = "Elements";
 
         // TexBox section
         public string textBoxSection = "Text Box";

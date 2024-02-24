@@ -17,7 +17,7 @@ namespace SpecFlowProject1.Pages
         {
             this.webDriver = webDriver;
         }
-
+        public string interactionsTitle = "Interactions";
         public string selectableSection = "Selectable";
         public IWebElement gridTab => webDriver.FindElement(By.XPath("//a[@id='demo-tab-grid']"));
 
