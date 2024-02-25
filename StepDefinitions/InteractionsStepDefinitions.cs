@@ -1,7 +1,6 @@
+using NUnit.Framework;
 using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
-using System;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.StepDefinitions
 {
@@ -43,18 +42,20 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User clicks Grid tab")]
         public void WhenUserClicksGridTab()
         {
-            _interactionsPage.ClickElement(_interactionsPage.gridTab);
-            Thread.Sleep(3000);
+            _interactionsPage.ClickElement(_interactionsPage.GridTab);
         }
 
         [When(@"User clicks  One, Three, Five, Seven and Nine")]
         public void WhenUserClicksOneThreeFiveSevenAndNine()
         {
+            _interactionsPage.ClickGridSquare();
         }
 
         [Then(@"value of selected squares is One, Three, Five, Seven and Nine")]
         public void ThenValueOfSelectedSquaresIsOneThreeFiveSevenAndNine()
         {
+            _interactionsPage.GetActiveSquareNumbers();
+            Assert.That(_interactionsPage.gridSquareNumbers, Is.EqualTo(_interactionsPage.actualSquareNumbers));
         }
     }
 }
