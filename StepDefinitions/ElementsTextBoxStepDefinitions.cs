@@ -43,10 +43,10 @@ namespace SpecFlowProject1.StepDefinitions
         {
             var row = table.Rows.FirstOrDefault();
 
-            _elementsPage.EnterName(row["name"])
-                        .EnterEmail(row["email"])
-                        .EnterCurrentAddress(row["address1"])
-                        .EnterPermanentAddress(row["address2"]);
+            _elementsPage.EnterText(_elementsPage.input, _elementsPage.userName, row["name"])
+                        .EnterText(_elementsPage.input, _elementsPage.userEmail, row["email"])
+                        .EnterText(_elementsPage.textarea, _elementsPage.currentAddress, row["address1"])
+                        .EnterText(_elementsPage.textarea, _elementsPage.permanentAddress, row["address2"]);
 
         }
         [When(@"Submit button is clicked")]
@@ -65,10 +65,10 @@ namespace SpecFlowProject1.StepDefinitions
             // Assert that the actual values match the expected values
             Assert.Multiple(() =>
             {
-                Assert.That(row["name"], Is.EqualTo(_elementsPage.GetResultNameText()));
-                Assert.That(row["email"], Is.EqualTo(_elementsPage.GetResultEmailText()));
-                Assert.That(row["address1"], Is.EqualTo(_elementsPage.GetResultCurrentAddressText()));
-                Assert.That(row["address2"], Is.EqualTo(_elementsPage.GetResultPermanentAddressText()));
+                Assert.That(row["name"], Is.EqualTo(_elementsPage.GetResultText(_elementsPage.name)));
+                Assert.That(row["email"], Is.EqualTo(_elementsPage.GetResultText(_elementsPage.email)));
+                Assert.That(row["address1"], Is.EqualTo(_elementsPage.GetResultText(_elementsPage.currentAddress)));
+                Assert.That(row["address2"], Is.EqualTo(_elementsPage.GetResultText(_elementsPage.permanentAddress)));
             });
 
         }

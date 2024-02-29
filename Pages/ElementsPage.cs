@@ -4,11 +4,11 @@ using OpenQA.Selenium.Support.UI;
 
 namespace SpecFlowProject1.Pages
 {
-    public class ElementsPage: CommonPage
+    public class ElementsPage : CommonPage
     {
         IWebDriver webDriver;
 
-        public ElementsPage(IWebDriver webDriver): base(webDriver) 
+        public ElementsPage(IWebDriver webDriver) : base(webDriver)
         {
             this.webDriver = webDriver;
         }
@@ -16,13 +16,18 @@ namespace SpecFlowProject1.Pages
 
         // TexBox section
         public string textBoxSection = "Text Box";
+        public string input = "input";
+        public string textarea = "textarea";
+        public string userName = "userName";
+        public string userEmail = "userEmail";
+        public string currentAddress = "currentAddress";
+        public string permanentAddress = "permanentAddress";
+        public string name = "name";
+        public string email = "email";
 
-        // public IWebElement Consent => webDriver.FindElement(By.XPath("//p[@class='fc-button-label' and contains(text(), 'Consent')]"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
-        public IWebElement GetFieldByName(string fieldName) => webDriver.FindElement(By.XPath($"//input[@id='{fieldName}']"));
-
-        public IWebElement GetTextAreaByName(string textAreaName) => webDriver.FindElement(By.XPath($"//textarea[@id='{textAreaName}']"));
+        public IWebElement GetFieldByName(string elementName, string fieldName) => webDriver.FindElement(By.XPath($"//{elementName}[@id='{fieldName}']"));
 
         public IWebElement GetResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
 
@@ -60,7 +65,6 @@ namespace SpecFlowProject1.Pages
 
         public IWebElement SalaryElement(string value) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{value}']"));
 
-        //public IWebElement DepartmentColumnElements(string elementName) => webDriver.FindElement(By.XPath($"//div[normalize-space()='{elementName}']"));
         public IWebElement DeleteIcon => webDriver.FindElement(By.XPath("(//*[name()='path'])[57]"));
 
 
@@ -74,33 +78,12 @@ namespace SpecFlowProject1.Pages
         public IWebElement ButtonSectionMessage(string message) => webDriver.FindElement(By.XPath($"//p[@id='{message}']"));
 
         // TexBox methods
-        public ElementsPage EnterName(string name)
+        public ElementsPage EnterText(string elementName, string fieldName, string text)
         {
-            string fieldName = "userName";
-            GetFieldByName(fieldName).SendKeys(name);
+            GetFieldByName(elementName, fieldName).SendKeys(text);
             return this;
         }
 
-        public ElementsPage EnterEmail(string email)
-        {
-            string fieldName = "userEmail";
-            GetFieldByName(fieldName).SendKeys(email);
-            return this;
-        }
-
-        public ElementsPage EnterCurrentAddress(string currentAddress)
-        {
-            string textAreaName = "currentAddress";
-            GetTextAreaByName(textAreaName).SendKeys(currentAddress);
-            return this;
-        }
-
-        public ElementsPage EnterPermanentAddress(string permanentAddress)
-        {
-            string textAreaName = "permanentAddress";
-            GetTextAreaByName(textAreaName).SendKeys(permanentAddress);
-            return this;
-        }
 
         public ElementsPage ClickSubmitButton()
         {
@@ -113,29 +96,9 @@ namespace SpecFlowProject1.Pages
             return this;
         }
 
-
-        public string GetResultNameText()
+        public string GetResultText(string text)
         {
-            string name = "name";
-            return GetResutlFieldByName(name).Text;
-        }
-
-        public string GetResultEmailText()
-        {
-            string email = "email";
-            return GetResutlFieldByName(email).Text;
-        }
-
-        public string GetResultCurrentAddressText()
-        {
-            string currentAddress = "currentAddress";
-            return GetResutlFieldByName(currentAddress).Text;
-        }
-
-        public string GetResultPermanentAddressText()
-        {
-            string permanentAddress = "permanentAddress";
-            return GetResutlFieldByName(permanentAddress).Text;
+            return GetResutlFieldByName(text).Text;
         }
 
         // CheckBox methods
