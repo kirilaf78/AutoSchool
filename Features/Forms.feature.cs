@@ -124,10 +124,10 @@ this.FeatureBackground();
  testRunner.When("User enters the following data", ((string)(null)), table3, "When ");
 #line hidden
 #line 13
- testRunner.And("User clicks  Female radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User checks \'Female\' radio button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 14
- testRunner.And("User enters date of birth \'06 Mar 1998\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User enters date of birth \'2006\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
  testRunner.And("User enters subjects Maths and Physics", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

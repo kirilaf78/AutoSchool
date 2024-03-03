@@ -36,11 +36,27 @@ namespace SpecFlowProject1.StepDefinitions
         [When(@"User enters the following data")]
         public void WhenUserEntersTheFollowingData(Table table)
         {
+            var row = table.Rows.FirstOrDefault();
+
+            _formsPage.EnterText(_formsPage.input, _formsPage.firstName, row["firstName"])
+                        .EnterText(_formsPage.input, _formsPage.lastName, row["lastName"])
+                        .EnterText(_formsPage.input, _formsPage.userEmail, row["email"])
+                        .EnterText(_formsPage.input, _formsPage.userNumber, row["mobileNumber"])
+                        .EnterText(_formsPage.textarea, _formsPage.currentAddress, row["address"]);
+            Thread.Sleep(3000);
+        }
+        [When(@"User checks '(.*)' radio button")]
+        public void WhenUserChecksRadioButton(string female)
+        {
+            _formsPage.ClickElement(_formsPage.FemaleLabel(female));
         }
 
-        [When(@"User enters date of birth '([^']*)'")]
-        public void WhenUserEntersDateOfBirth(string p0)
+
+        [When(@"User enters date of birth '(.*)'")]
+        public void WhenUserEntersDateOfBirth(string dateOfBirth)
         {
+            _formsPage.EnterDOB(dateOfBirth);
+
         }
 
         [When(@"User enters subjects Maths and Physics")]

@@ -10,8 +10,8 @@ Scenario: Verifying data in the modal
 	When User enters the following data
 		| firstName | lastName | email          | mobileNumber | address              |
 		| Sasha     | Usikova  | saus@gmail.com | 1445565729   | 20300, Uman, Ukraine |
-	And User clicks  Female radio button
-	And User enters date of birth '06 Mar 1998'
+	And User checks 'Female' radio button
+	And User enters date of birth '2006'
 	And User enters subjects Maths and Physics
 	And User checks Reading and Music checkboxes
 	And User selects Uttar Pradesh State and Merrut City

@@ -27,9 +27,9 @@ namespace SpecFlowProject1.Pages
 
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
 
-        public IWebElement GetFieldByName(string elementName, string fieldName) => webDriver.FindElement(By.XPath($"//{elementName}[@id='{fieldName}']"));
+        public IWebElement TableFieldByName(string elementName, string fieldName) => webDriver.FindElement(By.XPath($"//{elementName}[@id='{fieldName}']"));
 
-        public IWebElement GetResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
+        public IWebElement ResutlFieldByName(string resutlFieldName) => webDriver.FindElement(By.XPath($"//p[@id='{resutlFieldName}']"));
 
         //CheckBox section
 
@@ -45,11 +45,11 @@ namespace SpecFlowProject1.Pages
         public int folderWorkSpaceNumber = 4;
 
         // parametrize toggle elements to expand the folders
-        public IWebElement GetToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
+        public IWebElement ToggleElement(int index) => webDriver.FindElement(By.XPath($"(//button[@title='Toggle'])[{index}]"));
 
         // parametrize checkbox elements
-        public IWebElement GetCheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='tree-node-{checkboxTitle}']//span[@class='rct-checkbox']"));
-        public IList<IWebElement> GetCheckboxElements() => webDriver.FindElements(By.XPath("(//ol)[5]//span[@class='rct-checkbox']"));
+        public IWebElement CheckboxElement(string checkboxTitle) => webDriver.FindElement(By.XPath($"//label[@for='tree-node-{checkboxTitle}']//span[@class='rct-checkbox']"));
+        public IList<IWebElement> CheckboxElements() => webDriver.FindElements(By.XPath("(//ol)[5]//span[@class='rct-checkbox']"));
         public IWebElement DownloadsFolderTitle => webDriver.FindElement(By.XPath("//span[contains(text(),'Downloads')]"));
 
         public IWebElement ResultingMessage => webDriver.FindElement(By.XPath("//div[@id='result']"));
@@ -80,7 +80,7 @@ namespace SpecFlowProject1.Pages
         // TexBox methods
         public ElementsPage EnterText(string elementName, string fieldName, string text)
         {
-            GetFieldByName(elementName, fieldName).SendKeys(text);
+            TableFieldByName(elementName, fieldName).SendKeys(text);
             return this;
         }
 
@@ -98,25 +98,25 @@ namespace SpecFlowProject1.Pages
 
         public string GetResultText(string text)
         {
-            return GetResutlFieldByName(text).Text;
+            return ResutlFieldByName(text).Text;
         }
 
         // CheckBox methods
 
         public void ClickCheckBox(string checkBoxName)
         {
-            GetCheckboxElement(checkBoxName).Click();
+            CheckboxElement(checkBoxName).Click();
 
         }
         public void ClickToggle(int toggleNumber)
         {
-            GetToggleElement(toggleNumber).Click();
+            ToggleElement(toggleNumber).Click();
 
         }
 
         public void ClickToggleOfTheFolderDownloads()
         {
-            GetToggleElement(6).Click();
+            ToggleElement(6).Click();
 
         }
 
@@ -128,7 +128,7 @@ namespace SpecFlowProject1.Pages
 
         public void ClickAllInOfficeFolder()
         {
-            var checkboxElements = GetCheckboxElements();
+            var checkboxElements = CheckboxElements();
 
             foreach (var checkboxElement in checkboxElements)
             {
