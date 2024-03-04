@@ -158,11 +158,13 @@ this.FeatureBackground();
                 table4.AddRow(new string[] {
                             "1445565729"});
                 table4.AddRow(new string[] {
-                            "06 March,1998"});
+                            "28 February,2006"});
                 table4.AddRow(new string[] {
-                            "Maths, Physics"});
+                            "Physics, Maths"});
                 table4.AddRow(new string[] {
                             "Reading, Music"});
+                table4.AddRow(new string[] {
+                            ""});
                 table4.AddRow(new string[] {
                             "20300, Uman, Ukraine"});
                 table4.AddRow(new string[] {

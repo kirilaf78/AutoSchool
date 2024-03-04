@@ -1,10 +1,6 @@
-using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium;
+using NUnit.Framework;
 using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
-using System;
-using System.Security.Cryptography.X509Certificates;
-using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.StepDefinitions
 {
@@ -66,7 +62,6 @@ namespace SpecFlowProject1.StepDefinitions
         public void WhenUserTypesClicksEnterAndClicksEnter(string p, string m)
         {
             _formsPage.TypeLetterAndEnterWords(p, m);
-            // Thread.Sleep(3000);
 
         }
 
@@ -110,6 +105,9 @@ namespace SpecFlowProject1.StepDefinitions
         [Then(@"the following values are displayed in the modal")]
         public void ThenTheFollowingValuesAreDisplayedInTheModal(Table table)
         {
+            List<string> expecteValues = table.Rows.Select(row => row["Values"]).ToList();
+
+            Assert.That(expecteValues, Is.EqualTo(_formsPage.ConvertActualTableValues()));
         }
     }
 }

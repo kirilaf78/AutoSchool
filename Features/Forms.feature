@@ -12,7 +12,7 @@ Scenario: Verifying data in the modal
 		| Sasha     | Usikova  | saus@gmail.com | 1445565729   | 20300, Uman, Ukraine |
 	And User checks 'Female' radio button
 	And User enters date of birth '2006'
-	And User types 'p', clicks Enter,  and 'm', clicks Enter 
+	And User types 'p', clicks Enter,  and 'm', clicks Enter
 	And User checks 'Reading' and 'Music' checkboxes
 	And User clicks 'Select State'
 	And User selects Uttar Pradesh state
@@ -24,8 +24,9 @@ Scenario: Verifying data in the modal
 		| saus@gmail.com       |
 		| Female               |
 		| 1445565729           |
-		| 06 March,1998        |
-		| Maths, Physics       |
+		| 28 February,2006     |
+		| Physics, Maths       |
 		| Reading, Music       |
+		|                      |
 		| 20300, Uman, Ukraine |
 		| Uttar Pradesh Merrut |

@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
-using System.Security.Cryptography.X509Certificates;
 
 namespace SpecFlowProject1.Pages
 {
@@ -8,7 +7,6 @@ namespace SpecFlowProject1.Pages
     public class FormsPage : CommonPage
     {
         IWebDriver webDriver;
-
 
         public FormsPage(IWebDriver webDriver) : base(webDriver)
         {
@@ -28,7 +26,6 @@ namespace SpecFlowProject1.Pages
         public string stateName = "react-select-3-option-1";
         public string cityName = "react-select-4-option-2";
 
-
         public IWebElement TableFieldByName(string elementName, string fieldName) => webDriver.FindElement(By.XPath($"//{elementName}[@id='{fieldName}']"));
         public IWebElement YearPicker => webDriver.FindElement(By.XPath("//select[@class='react-datepicker__year-select']"));
         public IWebElement Year(string year) => webDriver.FindElement(By.XPath($"//option[@value='{year}']"));
@@ -40,9 +37,7 @@ namespace SpecFlowProject1.Pages
         public IWebElement SelectStateAndCity(string name) => webDriver.FindElement(By.XPath($"//div[contains(text(),'{name}')]"));
         public IWebElement StateAndCity(string name) => webDriver.FindElement(By.XPath($"//div[@id='{name}']"));
         public IWebElement SubmitButton => webDriver.FindElement(By.XPath("//button[@id='submit']"));
-
-
-        
+        public IList<IWebElement> tableValues => webDriver.FindElements(By.XPath("//table[@class='table table-dark table-striped table-bordered table-hover']/tbody/tr/td[2]"));
 
 
         public FormsPage EnterText(string elementName, string fieldName, string text)
@@ -53,11 +48,10 @@ namespace SpecFlowProject1.Pages
 
         public void EnterDOB(string dateOfBirth)
         {
-                DateOfBirthInput.SendKeys("");
-                ClickElement(YearPicker);
-                ClickElement(Year(dateOfBirth));
-                ClickElement(Date);
-                //Thread.Sleep(3000);
+            DateOfBirthInput.SendKeys("");
+            ClickElement(YearPicker);
+            ClickElement(Year(dateOfBirth));
+            ClickElement(Date);
         }
 
         public void TypeLetterAndEnterWords(string p, string m)
@@ -68,7 +62,6 @@ namespace SpecFlowProject1.Pages
             ClickEnter(SubjectInput);
             SubjectInput.SendKeys(m);
             ClickEnter(SubjectInput);
-            //Thread.Sleep(3000);
         }
 
         public void Enter()
@@ -76,6 +69,12 @@ namespace SpecFlowProject1.Pages
             Actions action = new Actions(webDriver);
             action.SendKeys(Keys.Enter).Perform();
 
+        }
+
+        public List<string> ConvertActualTableValues()
+        {
+            List<string> acutalValues = tableValues.Select(cell => cell.Text.Trim()).ToList();
+            return acutalValues;
         }
 
 
