@@ -49,6 +49,11 @@ namespace SpecFlowProject1.Pages
             return element.Text;
         }
 
+        public void ClickEnter(IWebElement element)
+        {
+            element.SendKeys(Keys.Enter);   
+        }
+
 
     }
 }

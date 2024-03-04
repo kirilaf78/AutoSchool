@@ -130,16 +130,22 @@ this.FeatureBackground();
  testRunner.And("User enters date of birth \'2006\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 15
- testRunner.And("User enters subjects Maths and Physics", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User types \'p\', clicks Enter,  and \'m\', clicks Enter", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 16
- testRunner.And("User checks Reading and Music checkboxes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User checks \'Reading\' and \'Music\' checkboxes", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 17
- testRunner.And("User selects Uttar Pradesh State and Merrut City", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User clicks \'Select State\'", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
 #line 18
- testRunner.And("User clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("User selects Uttar Pradesh state", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 19
+ testRunner.And("clicks \'Select City\' > Merrut", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+#line hidden
+#line 20
+ testRunner.And("clicks Submit button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
                 TechTalk.SpecFlow.Table table4 = new TechTalk.SpecFlow.Table(new string[] {
                             "Values"});
@@ -161,7 +167,7 @@ this.FeatureBackground();
                             "20300, Uman, Ukraine"});
                 table4.AddRow(new string[] {
                             "Uttar Pradesh Merrut"});
-#line 19
+#line 21
  testRunner.Then("the following values are displayed in the modal", ((string)(null)), table4, "Then ");
 #line hidden
             }

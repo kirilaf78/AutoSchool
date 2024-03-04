@@ -1,6 +1,9 @@
+using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium;
 using SpecFlowProject1.Drivers;
 using SpecFlowProject1.Pages;
 using System;
+using System.Security.Cryptography.X509Certificates;
 using TechTalk.SpecFlow;
 
 namespace SpecFlowProject1.StepDefinitions
@@ -59,20 +62,50 @@ namespace SpecFlowProject1.StepDefinitions
 
         }
 
-        [When(@"User enters subjects Maths and Physics")]
-        public void WhenUserEntersSubjectsMathsAndPhysics()
+        [When(@"User types '(.*)', clicks Enter,  and '(.*)', clicks Enter")]
+        public void WhenUserTypesClicksEnterAndClicksEnter(string p, string m)
         {
+            _formsPage.TypeLetterAndEnterWords(p, m);
+            // Thread.Sleep(3000);
+
         }
 
-        [When(@"User checks Reading and Music checkboxes")]
-        public void WhenUserChecksReadingAndMusicCheckboxes()
+        [When(@"User checks '(.*)' and '(.*)' checkboxes")]
+        public void WhenUserChecksAndCheckboxes(string reading, string music)
         {
+            _formsPage.ScrollDown(200);
+            _formsPage.ClickElement(_formsPage.HobbiesCheckBox(reading));
+            _formsPage.ClickElement(_formsPage.HobbiesCheckBox(music));
         }
 
-        [When(@"User selects Uttar Pradesh State and Merrut City")]
-        public void WhenUserSelectsUttarPradeshStateAndMerrutCity()
+        [When(@"User clicks '(.*)'")]
+        public void WhenUserClicks(string stateSelect)
         {
+            _formsPage.ClickElement(_formsPage.SelectStateAndCity(stateSelect));
         }
+
+        [When(@"User selects Uttar Pradesh state")]
+        public void WhenUserSelectsUttarPradeshState()
+        {
+            _formsPage.ClickElement(_formsPage.StateAndCity(_formsPage.stateName));
+        }
+
+        [When(@"clicks '(.*)' > Merrut")]
+        public void WhenClicksMerrut(string citySelect)
+        {
+            _formsPage.ScrollDown(200);
+
+            _formsPage.ClickElement(_formsPage.SelectStateAndCity(citySelect));
+            _formsPage.ClickElement(_formsPage.StateAndCity(_formsPage.cityName));
+        }
+
+        [When(@"clicks Submit button")]
+        public void WhenClicksSubmitButton()
+        {
+            _formsPage.ClickElement(_formsPage.SubmitButton);
+            Thread.Sleep(2000);
+        }
+
 
         [Then(@"the following values are displayed in the modal")]
         public void ThenTheFollowingValuesAreDisplayedInTheModal(Table table)

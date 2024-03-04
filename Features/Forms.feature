@@ -12,10 +12,12 @@ Scenario: Verifying data in the modal
 		| Sasha     | Usikova  | saus@gmail.com | 1445565729   | 20300, Uman, Ukraine |
 	And User checks 'Female' radio button
 	And User enters date of birth '2006'
-	And User enters subjects Maths and Physics
-	And User checks Reading and Music checkboxes
-	And User selects Uttar Pradesh State and Merrut City
-	And User clicks Submit button
+	And User types 'p', clicks Enter,  and 'm', clicks Enter 
+	And User checks 'Reading' and 'Music' checkboxes
+	And User clicks 'Select State'
+	And User selects Uttar Pradesh state
+	And clicks 'Select City' > Merrut
+	And clicks Submit button
 	Then the following values are displayed in the modal
 		| Values               |
 		| Sasha Usikova        |
